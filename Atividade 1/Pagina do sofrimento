@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Suffering</title>
+</head>
+<body>
+  <h1>Sofrimento</h1>
+  <p>Viver é sofrer</p>
+  <p> Clique na imagem para adiquirir um virus </p>
+  <p></p>
+  <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank"> 
+    <img src="meme.png" alt="Voce sofreu" width="512" height="512">
+  </a>
+</body>
+</html>
