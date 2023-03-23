@@ -25,11 +25,23 @@ li{
 
 a{
     color: white;
+    text-decoration: none;    
 }
 
 a:hover{
     color:blueviolet;
-    transition 0.3s all;
+    transition: 0.3s all;
+}
+
+#Inscrever{
+    border: 2px solid blueviolet;
+    padding: 10px;
+    border-radius: 15px;
+}
+
+#Inscrever:hover{
+    background-color: blueviolet;
+    color: white;
 }
 
 h1{
@@ -60,4 +72,32 @@ p{
 
 img{
     width: 600px;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    
+}
+
+form [type="submit"]{
+    height: 50%;
+    width: 50%;
+    background-color: blueviolet;
+    color:white;
+    font-weight: bold;
+}
+form [type="submit"]:hover{
+    cursor: pointer;
+    background-color: #6c23af;
+}
+
+input{
+    margin-top: 20px;
+    height: 20px;
+    padding: 20px;
+    border-radius: 20px;
+    border: none;
+    font-size: 15px;
 }
