@@ -1,0 +1,29 @@
+.body-style{
+    background-color: #474444;
+}
+
+.titulo{
+    font-size: 36px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #a1a1a1;
+    margin-left: 30px;
+}
+
+.atividades{
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0px 0px 30px;
+}
+
+.atividade{
+    color: #c4c4c4;
+    text-decoration: none;
+    margin: 10px;
+    font-size: 24px;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.atividade:hover{
+    color: #757575;
+    transition: 0.3s all;
+}
