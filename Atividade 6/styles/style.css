@@ -75,9 +75,6 @@
 .body-style{
     background-color: #c0b4ad;
     margin: 0px;
-    /* display: flex;
-    flex-direction: row;
-    align-items: start; */
     width: 100%;
     height: 100vh;
 }
