@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/seven-segment">
+    <link rel="icon" href="components/images/favicon.png">
+    <title>Calculadora</title>
+</head>
+<body class="body-style">
+    <div class="calculator-body">
+        <div class="display">
+            <div class="display-font dark-display-font">000000000000</div>
+            <div class="display-font" id="display">0</div>
+        </div>
+        <div class="numpad">
+            <div class="line">
+                <p class="digit" onclick="AppendNumber('1')">1</p>
+                <p class="digit" onclick="AppendNumber('2')">2</p>
+                <p class="digit" onclick="AppendNumber('3')">3</p>
+                <p class="digit operator-digit" onclick="OperatorHandler('/')">/</p>
+            </div>
+            <div class="line">
+                <p class="digit" onclick="AppendNumber('4')">4</p>
+                <p class="digit" onclick="AppendNumber('5')">5</p>
+                <p class="digit" onclick="AppendNumber('6')">6</p>
+                <p class="digit operator-digit" onclick="OperatorHandler('*')">*</p>
+            </div>
+            <div class="line">
+                <p class="digit" onclick="AppendNumber('7')">7</p>
+                <p class="digit" onclick="AppendNumber('8')">8</p>
+                <p class="digit" onclick="AppendNumber('9')">9</p>
+                <p class="digit operator-digit" onclick="OperatorHandler('-')">-</p>
+            </div>
+            <div class="line">
+                <p class="digit" onclick="AppendNumber('.')">.</p>
+                <p class="digit" onclick="AppendNumber('0')">0</p>
+                <p class="digit" onclick="Equals()">=</p>
+                <p class="digit operator-digit" onclick="OperatorHandler('+')">+</p>
+            </div>
+        </div>
+    </div>
+    <p class="disclaimer">*Delete button won't be implemented. Use "F5".</p>
+    <footer class="page-end">
+        <a href="https://github.com/NeverSnows" class="credit" target="_blank">Made by github.com/NeverSnows</a>
+    </footer>
+    <script src="js/index.js"></script>
+</body>
+</html>
