@@ -62,10 +62,14 @@ function GetResult(){
 }
 
 function Equals(){
+    result = '';
     GetResult();
+    if(result == ''){
+        result = 0;
+    }
     Clear();
     displayRefference.innerHTML = result;
-    lastPress = 'equals';currentOperand
+    lastPress = 'equals';
 }
 
 function Backspace(){
@@ -106,7 +110,6 @@ function Clear(){
     currentOperand = 1;
     displayRefference.innerHTML = '0';
     lastPress = 'clear';
-    result = '';
 }
 
 function Add(num1, num2){
