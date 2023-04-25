@@ -1,15 +1,17 @@
 let firstNumber = '';
 let secondNumber = '';
 let operator = 'none';
-let currentOperand = 1;
 let result;
+
+let currentOperand = 1;
 let lastPress = 'initialState';
-const displayRefference = document.getElementById('display');
+
+const displayElement = document.getElementById('display');
 
 function AppendNumber(num){
     if(currentOperand == 1){
         if(firstNumber == ''){
-            displayRefference.innerHTML = '';
+            displayElement.innerHTML = '';
         }
         firstNumber += num;
         console.log('First: ' + firstNumber);
@@ -18,12 +20,12 @@ function AppendNumber(num){
         console.log('Second: ' + secondNumber);
     }
     lastPress = 'number';
-    displayRefference.append(num);
+    displayElement.append(num);
 }
 
 function OperatorHandler(op){
     if(lastPress == 'operator'){
-        displayRefference.innerHTML = firstNumber;
+        displayElement.innerHTML = firstNumber;
     }else if(lastPress == 'equals'){
         firstNumber = result;
     }else if(operator != 'none'){
@@ -33,14 +35,14 @@ function OperatorHandler(op){
     }
     currentOperand = 2;
     operator = op;
-    displayRefference.append(operator);
+    displayElement.append(operator);
     console.log('Operator: ' + operator);
     lastPress = 'operator';
 }
 
 function OperatorEquals(){
    GetResult();
-   displayRefference.innerHTML = result;
+   displayElement.innerHTML = result;
    firstNumber = toString(firstNumber);
    secondNumber = toString(secondNumber);
    firstNumber = result;
@@ -68,7 +70,7 @@ function Equals(){
         result = 0;
     }
     Clear();
-    displayRefference.innerHTML = result;
+    displayElement.innerHTML = result;
     lastPress = 'equals';
 }
 
@@ -100,7 +102,7 @@ function Backspace(){
 }
 
 function DeleteEndOfDisplay(){
-    displayRefference.innerHTML = displayRefference.innerHTML.substring(0, displayRefference.innerHTML.length - 1);
+    displayElement.innerHTML = displayElement.innerHTML.substring(0, displayElement.innerHTML.length - 1);
 }
 
 function Clear(){
@@ -108,7 +110,7 @@ function Clear(){
     secondNumber = '';
     operator = 'none';
     currentOperand = 1;
-    displayRefference.innerHTML = '0';
+    displayElement.innerHTML = '0';
     lastPress = 'clear';
 }
 
