@@ -1,18 +1,23 @@
 :root{
     --bodyColor: #3a3836;
+
+    --calculatorBorderColor:#1f1e1d;
     --calculatorBodyColor: #3f3f46;
+
     --displayColor: #2e3f35;
     --displayFontColor: #afafaf;
     --darkDisplayFontColor: #222e27;
-    --calculatorBorderColor:#1f1e1d;
+
     --numpadBackgroundColor: #62626b;
-    --footerBackgroundColor: #2e2e2e;
-    --creditFontColor: #918883;
-    --creditHoverColor: #534e4b;
+    
     --digitBackgroundColor: #9797a5;
     --digitHovercolor: #83838f;
     --operatorDigitBackgroundColor: #2a2a2e;
     --operatorDigitHoverColor: #202020;
+
+    --footerBackgroundColor: #2e2e2e;
+    --creditFontColor: #918883;
+    --creditHoverColor: #534e4b;
 }
 
 .body-style{
