@@ -1,13 +1,13 @@
 let firstNumber = '';
 let secondNumber = '';
 let operator = 'none';
-let activeNumer = 1;
+let currentOperand = 1;
 let result;
-let lastPress = 'initial';
+let lastPress = 'initialState';
 const displayRefference = document.getElementById('display');
 
 function AppendNumber(num){
-    if(activeNumer == 1){
+    if(currentOperand == 1){
         if(firstNumber == ''){
             displayRefference.innerHTML = '';
         }
@@ -28,10 +28,10 @@ function OperatorHandler(op){
         firstNumber = result;
     }else if(operator != 'none'){
         OperatorEquals();
-    }else if(lastPress == 'initial'){
+    }else if(lastPress == 'initialState' || lastPress == 'clear'){
         firstNumber = '0';
     }
-    activeNumer = 2;
+    currentOperand = 2;
     operator = op;
     displayRefference.append(operator);
     console.log('Operator: ' + operator);
@@ -55,20 +55,58 @@ function GetResult(){
         case '/': result = Div(firstNumber, secondNumber); break;
         case '*': result = Prod(firstNumber, secondNumber); break;
         case '-': result = Diff(firstNumber, secondNumber); break;
-        case '+': result = Add(firstNumber, secondNumber);
+        case '+': result = Add(firstNumber, secondNumber); break;
+        case '%': result = Mod(firstNumber, secondNumber); break;
     }
     console.log('Result: ' + result);
 }
 
 function Equals(){
     GetResult();
-    activeNumer = 1;
-    operator = 'none';
+    Clear();
+    displayRefference.innerHTML = result;
+    lastPress = 'equals';currentOperand
+}
+
+function Backspace(){
+
+    if(lastPress == 'equals'){
+        firstNumber = result.toString();
+    }
+    if(secondNumber != ''){
+        DeleteEndOfDisplay();        
+        secondNumber = secondNumber.substring(0, secondNumber.length - 1);
+    }else if(operator != 'none'){
+        DeleteEndOfDisplay();
+        operator = 'none';
+    }else if(firstNumber != ''){
+        DeleteEndOfDisplay();
+        firstNumber = firstNumber.substring(0, firstNumber.length - 1);
+        if(firstNumber == ''){
+            Clear();
+        }
+    }
+
+    result = '';
+    lastPress = 'backspace';
+
+    console.log('N1: ' + firstNumber);
+    console.log('Operator: ' + operator);
+    console.log('N2: ' + secondNumber);
+}
+
+function DeleteEndOfDisplay(){
+    displayRefference.innerHTML = displayRefference.innerHTML.substring(0, displayRefference.innerHTML.length - 1);
+}
+
+function Clear(){
     firstNumber = '';
     secondNumber = '';
-    displayRefference.innerHTML = '';
-    displayRefference.append(result);
-    lastPress = 'equals';
+    operator = 'none';
+    currentOperand = 1;
+    displayRefference.innerHTML = '0';
+    lastPress = 'clear';
+    result = '';
 }
 
 function Add(num1, num2){
@@ -84,17 +122,9 @@ function Prod(num1, num2){
 }
 
 function Div(num1, num2){
-    // if(num2 == 0){
-    //     return 'error';
-    // }
-
     return num1 / num2;
 }
 
-/*
-Every number/dot you click, will append a string. 
-When you click an operator,it will parse that string
-into a number and set the current operation.
-When you hit '=', it will parse the second string to a number
-and make the calculation based on both numbers and the operator.
-*/
+function Mod(num1, num2){
+    return num1 % num2;
+}
