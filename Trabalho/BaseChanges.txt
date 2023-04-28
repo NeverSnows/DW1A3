@@ -1,0 +1,11 @@
+Changed entire class structure  for better future proofing;
+Changed html elements from <h1> etc to <p> for a cleaner initial state;
+Added inversion of colors on certain buttons;
+Added "neutral transaction" feature that was unacoutner for;
+Changed "minus transaction" button icon to "delete transaction";
+
+
+TODO:
+Add confirmation when deleting a transaction;
+Change favicon placeholder;
+Fix footer;

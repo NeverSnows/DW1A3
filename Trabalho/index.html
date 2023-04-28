@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snows Finanças</title>
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,400;0,700;1,100;1,200;1,300;1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="icon" href="assets/images/total.svg">
+</head>
+<body>
+    <header class="header_style">
+        <div class="logo_container">
+            <p class="logo_first_half">Snows</p>
+            <p class="logo_second_half">Finanças</p>
+        </div>
+    </header>
+    <main class="main_style">
+        <div class="balance_cards">
+            <p class="balance_title title screen_reader_only">Balanço</p>
+            <div class="card card_income">
+                <div class="card_title">
+                    <span>Entradas</span>
+                    <img src="assets/images/income.svg" alt="Imagem de entradas">
+                </div>
+                <p class="card_value">Valor</p>
+            </div>
+            <div class="card card_expense">
+                <div class="card_title">
+                    <span>Saidas</span>
+                    <img src="assets/images/expense.svg" alt="Imagem de saidas">
+                </div>
+                <p class="card_value">Valor</p>
+            </div>
+            <div class="card card_total">
+                <div class="card_title">
+                    <span>Total</span>
+                    <img src="assets/images/total.svg" alt="Imagem de total">
+                </div>
+                <p class="card_value">Valor</p>
+            </div>
+        </div>
+        <a href="#" class="new_transaction" id="new_transaction_button">+ Nova Transação</a>
+        <div class="transactions_container">
+            <p class="transactions_title title screen_reader_only">Transações</p>
+            <table class="transactions_table">
+                <thead class="table_head">
+                    <tr class="table_names">
+                        <th class="row_description">Descricao</th>
+                        <th class="row_description">Valor</th>
+                        <th class="row_description">Data</th>
+                        <th class="row_description"></th>
+                    </tr>
+                </thead>
+                <tbody class="table_body">
+                </tbody>
+            </table>
+        </div>
+    </main>
+    <div class="modal_overlay" id="modal_overlay">
+        <div class="modal">
+            <div class="new_transaction_form">
+                <p class="new_transaction_title">Nova Transação</p>
+                <form action="">
+                    <div class="input_group">
+                        <label for="transaction_description" class="screen_reader_only">Descrição da transação</label>
+                        <input type="text" id="transaction_description" name="transaction_description" placeholder="Descrição">
+                    </div>
+                    <div class="input_group">
+                        <label for="transaction_ammount" class="screen_reader_only">Quantia da transação</label>
+                        <input type="number" id="transaction_ammount" name="transaction_ammount" placeholder="Quantia">
+                    </div>
+                    <p class="new_transaction_help">Use o sinal "-" (Negativo) para despesas e "," (Virgula) para casas decimais.</p>
+                    <div class="input_group">
+                        <label for="transaction_date" class="screen_reader_only">Data da transação</label>
+                        <input type="date" id="transaction_date" name="transaction_date" placeholder="mm/dd/yyyy">
+                    </div>
+                    <div class="input_group actions">
+                        <a href="#" class="new_transaction_button cancel_transaction" id="cancel_transaction">Cancelar</a>
+                        <button class="new_transaction_button save_transaction" id="save_transaction">Salvar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <footer class="footer_style">
+        <a href="https://github.com/NeverSnows" class="credit" target="_blank">github.com/NeverSnows</a>
+    </footer>
+    <script src="js/layout.js"></script>
+</body>
+</html>
