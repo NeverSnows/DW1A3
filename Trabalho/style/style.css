@@ -204,6 +204,9 @@ body{
 .delete_transaction_icon:hover{
     transition: all 0.2s;
     filter: grayscale(1);
+    border: 2px var(--expense) solid;
+    border-radius: 50%;
+    padding: 0.1rem;
 }
 
 /*New Transaction Modal*/

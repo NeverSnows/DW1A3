@@ -150,5 +150,3 @@ const App = {
 }
 
 App.Init();
-
-//https://youtu.be/41VftS_pjnI?t=7241
