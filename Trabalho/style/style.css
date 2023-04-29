@@ -99,7 +99,7 @@ body{
     background-color: var(--lightTheme);
     padding: 1.5rem 2rem;
     border-radius: 0.25rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     color: var(--pageTitle);
 }
 
@@ -128,7 +128,6 @@ body{
 .card_value{
     font-size: 2rem;
     line-height: 3rem;
-
     margin-top: 1rem;
 }
 
@@ -140,11 +139,10 @@ body{
 .new_transaction{
     display: flex;
     flex-direction: row;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
     text-decoration: none;
     font-size: 17px;
-    justify-content: center;
-    text-align: center;
+    justify-content: start;
 }
 
 .new_income,
@@ -152,14 +150,15 @@ body{
     padding: 0.7rem;
     border-radius: 2rem;
     cursor: pointer;
-    margin-right: 1rem;
     width: 16ch;
     background-color: var(--lightTheme);
+    text-align: center;
 }
 
 .new_income{
     color: var(--button);
     border: 2px var(--button) solid;
+    margin: 0 2.8rem;
 
 }
 
@@ -172,6 +171,7 @@ body{
 .new_expense{
     color: var(--expense);
     border: 2px var(--expense) solid;
+    margin: 0 4.7rem;
 }
 
 .new_expense:hover{
