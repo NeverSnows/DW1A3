@@ -17,15 +17,25 @@ const testTransactions = [
 ];
 
 const Modal = {
+    expenseType: 0,
+
     DeactivateModal(){
         document.querySelector('.modal_overlay').classList.remove('active');
         document.querySelector('.modal_overlay').classList.add('inactive')
         Form.DeactivateAllForcedFields();
     },
 
-    ActivateModal(){
+    ActivateModal(type){
+        if(type == 'income'){
+            document.querySelector('.new_transaction_title').innerHTML = 'Nova Entrada';
+        }else{
+            document.querySelector('.new_transaction_title').innerHTML = 'Nova Saida';
+        }
+
         document.querySelector('.modal_overlay').classList.add('active');
         document.querySelector('.modal_overlay').classList.remove('inactive')
+
+        this.expenseType = type;
     }
 }
 
@@ -36,6 +46,10 @@ const DOM = {
     AddTransaction(transaction, index){
         const tr = document.createElement('tr');
         tr.classList.add('transaction');
+        if((index % 2) == 1){
+            tr.classList.add('odd_row');
+        }
+
         tr.innerHTML = this.InnerHTMLTransaction(transaction, index);
         tr.dataset.index = index;
 
@@ -192,7 +206,18 @@ const Utils = {
     },
 
     FormatAmount(value){
-        return Number(value) * 100;
+        let expense = Number(value) * 100;
+        
+        console.log(expense);
+        expense = expense.toString().replace('-', '');
+
+        console.log(expense);
+        if(Modal.expenseType == 'income'){
+            return Number(expense);
+        }else{
+            return Number('-' + expense);
+        }
+        
     },
 
     FormatDate(value){
@@ -308,10 +333,10 @@ const Form = {
 
         if(date.trim() === ""){
             document.getElementById('date_forced_field').classList.add('active');
-            document.getElementById('date_forced_forced_field').classList.remove('inactive');
+            document.getElementById('date_forced_field').classList.remove('inactive');
         }else{
             document.getElementById('date_forced_field').classList.remove('active');
-            document.getElementById('date_forced_forced_field').classList.add('inactive');
+            document.getElementById('date_forced_field').classList.add('inactive');
         }
     }
 }
@@ -320,10 +345,6 @@ App.Init();
 
 document.getElementById('cancel_transaction').onclick = function OnDeactivateModal(){
     Modal.DeactivateModal();
-}
-
-document.getElementById('new_transaction_button').onclick = function OnActivateModal(){
-    Modal.ActivateModal();
 }
 
 document.getElementById('new_transaction_form').onsubmit = function OnSubmitNewTransaction(event){

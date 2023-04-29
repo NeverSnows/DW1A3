@@ -43,7 +43,10 @@
                 <p class="card_value">R$ 0,00</p>
             </div>
         </div>
-        <a href="#" class="new_transaction" id="new_transaction_button">+ Nova Transação</a>
+        <div class="new_transaction">
+            <p class="new_income" id="new_transaction_button" onclick="Modal.ActivateModal('income')">+ Nova Entrada</p>
+            <p class="new_expense" id="new_transaction_button" onclick="Modal.ActivateModal('expense')">- Nova Saida</p>
+        </div>
         <div class="transactions_container">
             <p class="transactions_title title screen_reader_only">Transações</p>
             <table class="transactions_table">
@@ -89,7 +92,7 @@
                         <input type="number" id="transaction_amount" name="transaction_amount" placeholder="Quantia" step="0.01">
                         <p class="forced_field inactive" id="amount_forced_field">*Campo obrigatorio</p>
                     </div>
-                    <p class="new_transaction_help">Use o sinal "-" (Negativo) para despesas e "." (Ponto) para casas decimais.</p>
+                    <p class="new_transaction_help">Use "." (Ponto) para casas decimais.</p>
                     <div class="input_group">
                         <label for="transaction_date" class="screen_reader_only">Data da transação</label>
                         <input type="date" id="transaction_date" name="transaction_date" placeholder="mm/dd/yyyy">

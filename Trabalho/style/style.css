@@ -14,6 +14,7 @@
     --creditHover: #b8b8b8;
     --lightTheme: white;
     --darkTheme: #333333;
+    --oddRow: #e5e9f3;
 
 }
 
@@ -25,16 +26,21 @@
 
 html{
     font-size: 93.75%;
+    height: 100%;
 }
 
 body{
     background-color: var(--bodyBackground);
     font-family: 'Poppins', sans-serif;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .main_style{
     width: min(90vw, 800px);
     margin:auto;
+    height: 100%;
 }
 
 .title{
@@ -59,7 +65,7 @@ body{
 /*Header*/
 .header_style{
     background: var(--headerBackground);
-    padding: 2rem 0 11rem;
+    padding: 2rem 0 3rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -82,7 +88,7 @@ body{
 
 /*Balance*/
 .balance_cards{
-    margin-top: -8rem;
+    margin-top: 1rem;
 }
 
 .balance_title{
@@ -132,20 +138,46 @@ body{
 }
 
 .new_transaction{
-    display: inline-block;
+    display: flex;
+    flex-direction: row;
     margin-bottom: 1rem;
-    color: var(--button);
     text-decoration: none;
     font-size: 17px;
-    border: 2px var(--button) solid;
-    padding: 0.7rem;
-    border-radius: 2rem;
+    justify-content: center;
+    text-align: center;
 }
 
-.new_transaction:hover{
+.new_income,
+.new_expense{
+    padding: 0.7rem;
+    border-radius: 2rem;
+    cursor: pointer;
+    margin-right: 1rem;
+    width: 16ch;
+    background-color: var(--lightTheme);
+}
+
+.new_income{
+    color: var(--button);
+    border: 2px var(--button) solid;
+
+}
+
+.new_income:hover{
     transition: all 0.2s;
     color: var(--lightTheme);
     background-color: var(--button);
+}
+
+.new_expense{
+    color: var(--expense);
+    border: 2px var(--expense) solid;
+}
+
+.new_expense:hover{
+    transition: all 0.2s;
+    color: var(--lightTheme);
+    background-color: var(--expense);
 }
 
 .transactions_container{
@@ -178,6 +210,10 @@ body{
 .transaction td{
     background-color: var(--lightTheme);
     padding: 1rem 2rem;
+}
+
+.odd_row td{
+    background-color: var(--oddRow);
 }
 
 .row_description:first-child,
@@ -273,6 +309,7 @@ body{
     background: var(--bodyBackground);
     padding: 2.4rem;
     position: relative;
+    width: 600px;
 }
 
 .new_transaction_title{
@@ -359,14 +396,14 @@ body{
 }
 
 /*Footer*/
+
 .footer_style{
     background-color: var(--headerBackground);
     padding: 1rem 1rem 1rem 3rem;
     margin-top: 5rem;
-    position: absolute;
-    bottom: 0;
     width: 100%;
 }
+
 
 .credit{
     color: var(--lightTheme);
