@@ -117,10 +117,20 @@ const DOM = {
     
 }
 
-const Transaction = {
-    transactionsList: [],
+const Storage = {
+    get(){
+        return JSON.parse(localStorage.getItem("transactions")) || [];
+    },
 
-    transactionsList: testTransactions, //TODO remove upon release
+    set(value){
+        localStorage.setItem("transactions", JSON.stringify(value));
+    }
+}
+
+const Transaction = {
+    transactionsList: Storage.get(),
+
+    //transactionsList: testTransactions, //TODO remove upon release
 
     Add(transaction){
         this.transactionsList.push(transaction);
@@ -193,15 +203,6 @@ const Utils = {
     }
 }
 
-const Storage = {
-    getTransaction(){
-    },
-
-    setTransaction(transactions){
-        
-    }
-}
-
 const App = {
     Init(){
         if(Transaction.transactionsList.length > 0){
@@ -211,6 +212,8 @@ const App = {
         }else{
             DOM.UpdateBalance();
         }
+        
+        Storage.set(Transaction.transactionsList);
     },
 
     Reload(){
