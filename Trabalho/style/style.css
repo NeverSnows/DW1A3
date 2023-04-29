@@ -1,15 +1,19 @@
 /*Global*/
 :root{
     --bodyBackground: #f0f2f5;
+    --bodyBackgroundDark: #252525;
     --headerBackground: #2d4a22;
     --pageTitle: #363f5f;
-    --total: #49aa26;
+    --totalPositive: #49aa26;
+    --totalNegative: #e95858;
     --table_text: #969cb3;
     --income: #12a544;
     --expense: #e92929;
     --button: #49aa26;
     --buttonHover: #3dd705;
     --creditHover: #b8b8b8;
+    --lightTheme: white;
+    --darkTheme: #333333;
 
 }
 
@@ -73,7 +77,7 @@ body{
 }
 
 .logo_second_half{
-    color: white;
+    color: var(--lightTheme);
 }
 
 /*Balance*/
@@ -82,11 +86,11 @@ body{
 }
 
 .balance_title{
-    color: white;
+    color: var(--lightTheme);
 }
 
 .card{
-    background-color: white;
+    background-color: var(--lightTheme);
     padding: 1.5rem 2rem;
     border-radius: 0.25rem;
     margin-bottom: 2rem;
@@ -94,8 +98,19 @@ body{
 }
 
 .card_total{
-    background-color: var(--total);
-    color: white;
+    color: var(--lightTheme);
+}
+
+.card_total_positive{
+    background-color: var(--totalPositive);
+}
+
+.card_total_negative{
+    background-color: var(--totalNegative);
+}
+
+.card_total_neutral{
+    background-color: var(--table_text);
 }
 
 .card_title{
@@ -129,7 +144,7 @@ body{
 
 .new_transaction:hover{
     transition: all 0.2s;
-    color: white;
+    color: var(--lightTheme);
     background-color: var(--button);
 }
 
@@ -145,7 +160,7 @@ body{
 }
 
 .row_description{
-    background-color: white;
+    background-color: var(--lightTheme);
     font-weight: normal;
     padding: 1rem 3rem;
     text-align: left;
@@ -161,7 +176,7 @@ body{
 }
 
 .transaction td{
-    background-color: white;
+    background-color: var(--lightTheme);
     padding: 1rem 2rem;
 }
 
@@ -193,16 +208,48 @@ body{
 
 .delete_transaction_container{
     display: flex;
-    flex-direction: column;
-    align-items: end;
+    flex-direction: row;
+    justify-content: end;
+}
+
+.question_delete_transaction{
+    height: 2rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-right: -1.9rem;
+}
+
+.confirm_delete_transaction{
+    height: 2rem;
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+.confirm_delete_transaction:hover{
+    opacity: 1;
+}
+
+.deny_delete_transaction{
+    height: 2rem;
+    margin-left: 2rem;
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+.deny_delete_transaction:hover{
+    opacity: 1;
 }
 
 .delete_transaction_icon{
     height: 2rem;
+    position: relative;
+    cursor: pointer;
+
 }
 
 .delete_transaction_icon:hover{
-    transition: all 0.2s;
+    transition: all 0.1s;
     filter: grayscale(1);
     border: 2px var(--expense) solid;
     border-radius: 50%;
@@ -220,13 +267,6 @@ body{
     align-items: center;
     justify-content: center;
 
-    opacity: 0;
-    visibility: hidden;
-}
-
-.active{
-    opacity: 100%;
-    visibility: visible;
 }
 
 .modal{
@@ -256,6 +296,11 @@ body{
     width: 100%;
 }
 
+.forced_field{
+    color: var(--expense);
+    font-size: 12px;
+}
+
 .new_transaction_help{
     font-size: small;
     opacity: 0.5;
@@ -275,7 +320,7 @@ body{
 }
 .save_transaction{
     border: none;
-    color: white;
+    color: var(--lightTheme);
     background-color: var(--button);
 }
 
@@ -298,7 +343,19 @@ body{
 .cancel_transaction:hover{
     transition: all 0.2s;
     background-color: var(--expense);
-    color: white;
+    color: var(--lightTheme);
+}
+
+.inactive{
+    transition: all 0.2s;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.active{
+    transition: all 0.2s;
+    opacity: 100%;
+    visibility: visible;
 }
 
 /*Footer*/
@@ -307,12 +364,12 @@ body{
     padding: 1rem 1rem 1rem 3rem;
     margin-top: 5rem;
     position: absolute;
-    bottom: 0%;
+    bottom: 0;
     width: 100%;
 }
 
 .credit{
-    color: white;
+    color: var(--lightTheme);
     text-decoration: none;
 }
 
@@ -320,6 +377,7 @@ body{
     transition: all 0.2s;
     color: var(--creditHover); 
 }
+
 /*Responsive*/
 @media (min-width: 800px){
     html{

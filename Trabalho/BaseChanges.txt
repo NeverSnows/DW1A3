@@ -3,9 +3,10 @@ Changed html elements from <h1> etc to <p> for a cleaner initial state;
 Added inversion of colors on certain buttons;
 Added "neutral transaction" feature that was unacoutner for;
 Changed "minus transaction" button icon to "delete transaction";
-
+Replaced ugly alert to "fill all new transaction form fields" with an "Obligatory field" text that appears under every fild that is empty;
+Made total balance card background change color depending on balance value
+Added confirmation when deleting a transaction;
 
 TODO:
-Add confirmation when deleting a transaction;
 Change favicon placeholder;
-Fix footer;
+Fix the gods forbiden footer;

@@ -35,7 +35,7 @@
                 </div>
                 <p class="card_value">Valor</p>
             </div>
-            <div class="card card_total">
+            <div class="card card_total card_total">
                 <div class="card_title">
                     <span>Total</span>
                     <img src="assets/images/total.svg" alt="Imagem de total">
@@ -56,27 +56,44 @@
                     </tr>
                 </thead>
                 <tbody class="table_body">
+                    <div class="row_format_test">
+                        <!-- <tr class="transaction">
+                        <td class="transaction_description">TESTE</td>
+                        <td class="transaction_neutral">R$TESTE</td>
+                        <td class="transaction_date">T/E/STE</td>
+                        <td class="delete_transaction_container">
+                            <div class="question_delete_transaction inactive">
+                                <p class="confirm_delete_transaction" onclick="Transaction.Remove(0)">J</p>
+                                <p class="deny_delete_transaction" id="deny_delete_transaction">X</p>
+                            </div>
+                            <img src="assets/images/delete_transaction.svg" alt="Deletar transacao" class="delete_transaction_icon active" id="delete_transaction"> 
+                        </td>
+                    </tr> -->
+                    </div>
                 </tbody>
             </table>
         </div>
     </main>
-    <div class="modal_overlay" id="modal_overlay">
+    <div class="modal_overlay inactive" id="modal_overlay">
         <div class="modal">
             <div class="new_transaction_form">
                 <p class="new_transaction_title">Nova Transação</p>
-                <form action="">
+                <form action="" id="new_transaction_form">
                     <div class="input_group">
                         <label for="transaction_description" class="screen_reader_only">Descrição da transação</label>
                         <input type="text" id="transaction_description" name="transaction_description" placeholder="Descrição">
+                        <p class="forced_field inactive" id="description_forced_field">*Campo obrigatorio</p>
                     </div>
                     <div class="input_group">
-                        <label for="transaction_ammount" class="screen_reader_only">Quantia da transação</label>
-                        <input type="number" id="transaction_ammount" name="transaction_ammount" placeholder="Quantia">
+                        <label for="transaction_amount" class="screen_reader_only">Quantia da transação</label>
+                        <input type="number" id="transaction_amount" name="transaction_amount" placeholder="Quantia" step="0.01">
+                        <p class="forced_field inactive" id="amount_forced_field">*Campo obrigatorio</p>
                     </div>
-                    <p class="new_transaction_help">Use o sinal "-" (Negativo) para despesas e "," (Virgula) para casas decimais.</p>
+                    <p class="new_transaction_help">Use o sinal "-" (Negativo) para despesas e "." (Ponto) para casas decimais.</p>
                     <div class="input_group">
                         <label for="transaction_date" class="screen_reader_only">Data da transação</label>
                         <input type="date" id="transaction_date" name="transaction_date" placeholder="mm/dd/yyyy">
+                        <p class="forced_field inactive" id="date_forced_field">*Campo obrigatorio</p>
                     </div>
                     <div class="input_group actions">
                         <a href="#" class="new_transaction_button cancel_transaction" id="cancel_transaction">Cancelar</a>
