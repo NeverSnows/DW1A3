@@ -25,7 +25,7 @@
 }
 
 html{
-    font-size: 93.75%;
+    font-size: 87.5%;
     height: 100%;
 }
 
@@ -88,6 +88,9 @@ body{
 
 /*Balance*/
 .balance_cards{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2rem;
     margin-top: 1rem;
 }
 
@@ -416,14 +419,22 @@ body{
 }
 
 /*Responsive*/
-@media (min-width: 800px){
+@media (max-width: 800px){
     html{
-        font-size: 87.5%;
+        font-size: 93.75%;
     }
 
     .balance_cards{
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        gap: 2rem;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .new_income,
+    .new_expense{
+        margin: 0 1rem;
+    }
+
+    .new_transaction{
+        justify-content: center;
     }
 }
