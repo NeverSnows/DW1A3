@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-github.com/NeverSnowsscale=1.0">
     <title>Snows Finanças</title>
     <link rel="stylesheet" href="style/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -44,15 +44,15 @@
             </div>
         </div>
         <div class="new_transaction">
-            <p class="new_income" id="new_transaction_button" onclick="Modal.ActivateModal('income')">+ Nova Entrada</p>
-            <p class="new_expense" id="new_transaction_button" onclick="Modal.ActivateModal('expense')">- Nova Saida</p>
+            <p class="new_income" id="new_transaction_button">+ Nova Entrada</p>
+            <p class="new_expense" id="new_transaction_button">- Nova Saida</p>
         </div>
         <div class="transactions_container">
             <p class="transactions_title title screen_reader_only">Transações</p>
             <table class="transactions_table">
                 <thead class="table_head">
                     <tr class="table_names">
-                        <th class="row_description">Descricao</th>
+                        <th class="row_description">Descrição</th>
                         <th class="row_description">Valor</th>
                         <th class="row_description">Data</th>
                         <th class="row_description"></th>
@@ -66,11 +66,11 @@
                         <td class="transaction_date">T/E/STE</td>
                         <td class="delete_transaction_container">
                             <div class="question_delete_transaction inactive">
-                                <p class="confirm_delete_transaction" onclick="Transaction.Remove(0)">J</p>
-                                <p class="deny_delete_transaction" id="deny_delete_transaction">X</p>
+                                <img src="assets/images/confirm.svg" alt="Confirm delete transaction" class="confirm_delete_transaction">
+                                <img src="assets/images/deny.svg" alt="Deny delete transaction" class="deny_delete_transaction">
                             </div>
-                            <img src="assets/images/delete_transaction.svg" alt="Deletar transacao" class="delete_transaction_icon active" id="delete_transaction"> 
-                        </td>
+                            <img src="assets/images/delete_transaction.svg" alt="Deletar transacao" class="delete_transaction_icon" id="delete_transaction"> 
+                        </td> 
                     </tr> -->
                     </div>
                 </tbody>

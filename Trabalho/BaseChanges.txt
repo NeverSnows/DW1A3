@@ -1,13 +1,16 @@
-1 - Changed entire class structure  for better future proofing;
-2 - Changed html elements from <h1> etc to <p> for a cleaner initial state;
-3 - Added inversion of colors on certain buttons;
-4 - Added "neutral transaction" feature that was unacoutner for;
-5 - Changed "minus transaction" button icon to "delete transaction";
-6 - Replaced ugly alert to "fill all new transaction form fields" with an "Obligatory field" text that appears under every fild that is empty;
-7 - Made total balance card background change color depending on balance value
-8 - Added confirmation when deleting a transaction;
-9 - Split "New Transaction" button in two, creating "New Incom" and "New Expense";
+Changes
+1 - Restructured the class system to future-proof the software and ensure scalability.
+2 - Replaced HTML header elements with paragraph elements to avoid residual atributes.
+3 - Added color inversion to certain buttons to improve visibility and user comprehension.
+4 - Introduced the "neutral transaction" feature, which was previously absent.
+5 - Changed the "minus transaction" button icon to a "delete transaction" icon to improve clarity.
+6 - Replaced an unsightly alert with a more elegant "Obligatory field" message that appears beneath each empty form field.
+7 - Implemented a color-changing background on the total balance card to indicate the user's balance status.
+8 - Added a confirmation step when deleting a transaction to avoid accidental deletions.
+9 - Split the "New Transaction" button into "New Income" and "New Expense" buttons to increase user friendliness.
+10 - Replaced all "onclick" atributes on html with EventListeners on javascript;
+11 - Added an alternating color on teh Transactions Table to improve visibility;
+12 - Adjusted form input method to account for floating point error;
 
 TODO:
-Fix the gods forbiden footer;
-FLOATING POINT ERROR LMAO;
+1 - FIX THE FUCKING FOOTER.

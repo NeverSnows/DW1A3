@@ -17,8 +17,6 @@ const testTransactions = [
 ];
 
 const Modal = {
-    expenseType: 0,
-
     DeactivateModal(){
         document.querySelector('.modal_overlay').classList.remove('active');
         document.querySelector('.modal_overlay').classList.add('inactive')
@@ -26,6 +24,7 @@ const Modal = {
     },
 
     ActivateModal(type){
+        Form.DeactivateAllForcedFields();
         if(type == 'income'){
             document.querySelector('.new_transaction_title').innerHTML = 'Nova Entrada';
         }else{
@@ -80,10 +79,10 @@ const DOM = {
     <td class="transaction_date">${transaction.date}</td>
     <td class="delete_transaction_container">
         <div class="question_delete_transaction inactive">
-            <img src="assets/images/confirm.svg" alt="Confirm delete transaction" class="confirm_delete_transaction" onclick="Transaction.Remove(${index})">
-            <img src="assets/images/deny.svg" alt="Deny delete transaction" class="deny_delete_transaction" onclick="DOM.DeactivateQuestionDelete(${index})">
+            <img src="assets/images/confirm.svg" alt="Confirm delete transaction" class="confirm_delete_transaction">
+            <img src="assets/images/deny.svg" alt="Deny delete transaction" class="deny_delete_transaction">
         </div>
-        <img src="assets/images/delete_transaction.svg" alt="Deletar transacao" class="delete_transaction_icon" id="delete_transaction" onclick="DOM.ActivateQuestionDelete(${index})"> 
+        <img src="assets/images/delete_transaction.svg" alt="Deletar transacao" class="delete_transaction_icon" id="delete_transaction"> 
     </td>  
     `;
         return html;
@@ -122,10 +121,12 @@ const DOM = {
     },
 
     DeactivateQuestionDelete(index){
-        document.querySelector('.transaction[data-index="' + index + '"] .question_delete_transaction').classList.remove('active');
-        document.querySelector('.transaction[data-index="' + index + '"] .question_delete_transaction').classList.add('inactive');
-        document.querySelector('.transaction[data-index="' + index + '"] .delete_transaction_icon').classList.remove('inactive');
-        document.querySelector('.transaction[data-index="' + index + '"] .delete_transaction_icon').classList.add('active');
+        if(document.querySelector('.transaction[data-index="' + index + '"]') != null){
+            document.querySelector('.transaction[data-index="' + index + '"] .question_delete_transaction').classList.remove('active');
+            document.querySelector('.transaction[data-index="' + index + '"] .question_delete_transaction').classList.add('inactive');
+            document.querySelector('.transaction[data-index="' + index + '"] .delete_transaction_icon').classList.remove('inactive');
+            document.querySelector('.transaction[data-index="' + index + '"] .delete_transaction_icon').classList.add('active');
+        }
     },
 
     
@@ -206,12 +207,10 @@ const Utils = {
     },
 
     FormatAmount(value){
-        let expense = Number(value) * 100;
+        let expense = (value * 100).toFixed(2);
         
-        console.log(expense);
         expense = expense.toString().replace('-', '');
-
-        console.log(expense);
+        
         if(Modal.expenseType == 'income'){
             return Number(expense);
         }else{
@@ -225,7 +224,7 @@ const Utils = {
         const splicedDate = value.split("-");
         //31/12/1999
         return `${splicedDate[2]}/${splicedDate[1]}/${splicedDate[0]}`;
-    }
+    },
 }
 
 const App = {
@@ -237,7 +236,7 @@ const App = {
         }else{
             DOM.UpdateBalance();
         }
-        
+        EventListeners.SubscribeAllEventListeners();
         Storage.set(Transaction.transactionsList);
     },
 
@@ -263,7 +262,6 @@ const Form = {
 
     FormatValues(){
         let{description, amount, date} = this.getValues();
-
         amount = Utils.FormatAmount(amount);
         date = Utils.FormatDate(date);
 
@@ -309,6 +307,9 @@ const Form = {
         document.getElementById('description_forced_field').classList.remove('active');
         document.getElementById('amount_forced_field').classList.remove('active');
         document.getElementById('date_forced_field').classList.remove('active');
+        document.getElementById('description_forced_field').classList.add('inactive');
+        document.getElementById('amount_forced_field').classList.add('inactive');
+        document.getElementById('date_forced_field').classList.add('inactive');
     },
 
     ActivateForcedFields(){
@@ -341,12 +342,45 @@ const Form = {
     }
 }
 
+const EventListeners = {
+    SubscribeAllEventListeners(){
+
+        document.getElementById('cancel_transaction').addEventListener('click', function() {
+            Modal.DeactivateModal();
+          });
+
+        document.getElementById('save_transaction').addEventListener('click', function(event) {
+            Form.SubmitNewTransaction(event);
+        })
+
+        const transactionsElements = document.querySelectorAll('.transaction');
+
+        transactionsElements.forEach(transaction => {
+            deleteButton = transaction.querySelector('.delete_transaction_icon');
+            denyDeleteButton = transaction.querySelector('.deny_delete_transaction');
+            confirmDeleteButton = transaction.querySelector('.confirm_delete_transaction');
+
+            const index = transaction.dataset.index;
+
+            deleteButton.addEventListener('click', function() {
+                DOM.ActivateQuestionDelete(index);
+            });
+            denyDeleteButton.addEventListener('click', function(){
+                DOM.DeactivateQuestionDelete(index);
+            });
+            confirmDeleteButton.addEventListener('click', function(){
+                Transaction.Remove(index);
+            });
+        });
+        
+        document.querySelector(".new_income").addEventListener('click', function() {
+            Modal.ActivateModal('income');
+        });
+
+        document.querySelector(".new_expense").addEventListener('click', function() {
+            Modal.ActivateModal('expense');
+        });
+    }
+}
+
 App.Init();
-
-document.getElementById('cancel_transaction').onclick = function OnDeactivateModal(){
-    Modal.DeactivateModal();
-}
-
-document.getElementById('new_transaction_form').onsubmit = function OnSubmitNewTransaction(event){
-    Form.SubmitNewTransaction(event);
-}
