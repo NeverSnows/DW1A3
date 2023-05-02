@@ -1,22 +1,5 @@
 /*Global*/
-:root{
-    --bodyBackground: #f0f2f5;
-    --bodyBackgroundDark: #252525;
-    --headerBackground: #2d4a22;
-    --pageTitle: #363f5f;
-    --totalPositive: #49aa26;
-    --totalNegative: #e95858;
-    --table_text: #969cb3;
-    --income: #12a544;
-    --expense: #e92929;
-    --button: #49aa26;
-    --buttonHover: #3dd705;
-    --creditHover: #b8b8b8;
-    --lightTheme: white;
-    --darkTheme: #333333;
-    --oddRow: #e5e9f3;
 
-}
 
 *{
     margin: 0px;
@@ -76,6 +59,7 @@ body{
     flex-direction: row;
     font-size: 35px;
     font-weight: 200;
+    cursor: default;
 }
 
 .logo_first_half{
@@ -83,7 +67,7 @@ body{
 }
 
 .logo_second_half{
-    color: var(--lightTheme);
+    color: var(--logo);
 }
 
 /*Balance*/
@@ -95,11 +79,11 @@ body{
 }
 
 .balance_title{
-    color: var(--lightTheme);
+    color: var(--theme);
 }
 
 .card{
-    background-color: var(--lightTheme);
+    background-color: var(--theme);
     padding: 1.5rem 2rem;
     border-radius: 0.25rem;
     margin-bottom: 1rem;
@@ -107,7 +91,7 @@ body{
 }
 
 .card_total{
-    color: var(--lightTheme);
+    color: var(--theme);
 }
 
 .card_total_positive{
@@ -132,6 +116,7 @@ body{
     font-size: 2rem;
     line-height: 3rem;
     margin-top: 1rem;
+    color: var(--helper);
 }
 
 /*Transactions*/
@@ -154,7 +139,7 @@ body{
     border-radius: 2rem;
     cursor: pointer;
     width: 16ch;
-    background-color: var(--lightTheme);
+    background-color: var(--theme);
     text-align: center;
 }
 
@@ -167,7 +152,7 @@ body{
 
 .new_income:hover{
     transition: all 0.2s;
-    color: var(--lightTheme);
+    color: var(--theme);
     background-color: var(--button);
 }
 
@@ -179,7 +164,7 @@ body{
 
 .new_expense:hover{
     transition: all 0.2s;
-    color: var(--lightTheme);
+    color: var(--theme);
     background-color: var(--expense);
 }
 
@@ -195,7 +180,7 @@ body{
 }
 
 .row_description{
-    background-color: var(--lightTheme);
+    background-color: var(--theme);
     font-weight: normal;
     padding: 1rem 3rem;
     text-align: left;
@@ -211,7 +196,7 @@ body{
 }
 
 .transaction td{
-    background-color: var(--lightTheme);
+    background-color: var(--theme);
     padding: 1rem 2rem;
 }
 
@@ -318,6 +303,7 @@ body{
 .new_transaction_title{
     font-size: 24px;
     margin-bottom: 1rem;
+    color: var(--helper);
 }
 
 /*Form*/
@@ -344,6 +330,7 @@ body{
 .new_transaction_help{
     font-size: small;
     opacity: 0.5;
+    color: var(--helper);
 }
 
 .input_group.actions{
@@ -360,7 +347,7 @@ body{
 }
 .save_transaction{
     border: none;
-    color: var(--lightTheme);
+    color: var(--helper);
     background-color: var(--button);
 }
 
@@ -383,7 +370,7 @@ body{
 .cancel_transaction:hover{
     transition: all 0.2s;
     background-color: var(--expense);
-    color: var(--lightTheme);
+    color: var(--helper);
 }
 
 .inactive{
@@ -408,17 +395,48 @@ body{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
 }
 
 
 .credit{
-    color: var(--lightTheme);
+    color: var(--logo);
     text-decoration: none;
+    text-align: center;
 }
 
 .credit:hover{
     transition: all 0.2s;
     color: var(--creditHover); 
+}
+
+.light_theme,
+.dark_theme{
+    border: none;
+    border-radius: 50%;
+    padding: 0.4rem;
+    height: 3rem;
+}
+
+.light_theme{
+
+}
+
+.light_theme:hover{
+    transition: all 0.2s;
+    background-color: var(--theme);
+    filter: invert(1);
+}
+
+.dark_theme{
+    transition: all 0.3s;
+    filter: invert(1);
+}
+
+.dark_theme:hover{
+    transition: all 0.2s;
+    background-color: var(--helper);
+    filter: invert(0.1);
 }
 
 /*Responsive*/

@@ -1,0 +1,17 @@
+:root{
+    --bodyBackground: #444444;
+    --headerBackground: #488332;
+    --pageTitle: #dadce7;
+    --totalPositive: #49aa26;
+    --totalNegative: #b94c4c;
+    --table_text: #d9dce9;
+    --income: #3cc469;
+    --expense: #f88484;
+    --button: #50b12c;
+    --buttonHover: #3dd705;
+    --creditHover: #b8b8b8;
+    --theme: #797979;
+    --oddRow: #6a7072;
+    --logo:white;
+    --helper: white;
+}

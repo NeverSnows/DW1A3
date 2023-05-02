@@ -40,7 +40,7 @@ const Modal = {
 
 const DOM = {
     transactionsContainer: document.querySelector('.table_body'),
-    lastActiveQuestionDelete : 0,
+    lastActiveQuestionDelete: 0,
 
     AddTransaction(transaction, index){
         const tr = document.createElement('tr');
@@ -129,21 +129,46 @@ const DOM = {
         }
     },
 
+    SwapWebpagetheme(){
+        if(Storage.get("theme") == 'light' ){
+            document.getElementById('theme').setAttribute('href', 'style/darkColors.css');
+            document.getElementById('change_theme').classList.add('dark_theme');
+            document.getElementById('change_theme').classList.remove('light_theme');
+            Storage.set('dark', "theme");
+        }else{
+            document.getElementById('theme').setAttribute('href', 'style/lightColors.css');
+            document.getElementById('change_theme').classList.add('light_theme');
+            document.getElementById('change_theme').classList.remove('dark_theme');
+            Storage.set('light', "theme");
+        }
+    },
+
+    CheckWebpagetheme(){
+        if(Storage.get("theme") == 'light' ){
+            document.getElementById('theme').setAttribute('href', 'style/lightColors.css');
+            document.getElementById('change_theme').classList.add('light_theme');
+            document.getElementById('change_theme').classList.remove('dark_theme');
+        }else{
+            document.getElementById('theme').setAttribute('href', 'style/darkColors.css');
+            document.getElementById('change_theme').classList.add('dark_theme');
+            document.getElementById('change_theme').classList.remove('light_theme');
+        }
+    }
     
 }
 
 const Storage = {
-    get(){
-        return JSON.parse(localStorage.getItem("transactions")) || [];
+    get(key){
+        return JSON.parse(localStorage.getItem(key)) || [];
     },
 
-    set(value){
-        localStorage.setItem("transactions", JSON.stringify(value));
+    set(value, key){
+        localStorage.setItem(key, JSON.stringify(value));
     }
 }
 
 const Transaction = {
-    transactionsList: Storage.get(),
+    transactionsList: Storage.get("transactions"),
 
     //transactionsList: testTransactions, //TODO remove upon release
 
@@ -236,8 +261,8 @@ const App = {
         }else{
             DOM.UpdateBalance();
         }
-        EventListeners.SubscribeAllEventListeners();
-        Storage.set(Transaction.transactionsList);
+        EventListeners.SubscribeDynamicEventListeners();
+        Storage.set(Transaction.transactionsList, "transactions");
     },
 
     Reload(){
@@ -343,7 +368,7 @@ const Form = {
 }
 
 const EventListeners = {
-    SubscribeAllEventListeners(){
+    SubscribeEventListeners(){
 
         document.getElementById('cancel_transaction').addEventListener('click', function() {
             Modal.DeactivateModal();
@@ -352,7 +377,21 @@ const EventListeners = {
         document.getElementById('save_transaction').addEventListener('click', function(event) {
             Form.SubmitNewTransaction(event);
         })
+        
+        document.querySelector(".new_income").addEventListener('click', function() {
+            Modal.ActivateModal('income');
+        });
 
+        document.querySelector(".new_expense").addEventListener('click', function() {
+            Modal.ActivateModal('expense');
+        });
+
+        document.getElementById('change_theme').addEventListener('click', function() {
+            DOM.SwapWebpagetheme();
+        });
+    },
+
+    SubscribeDynamicEventListeners(){
         const transactionsElements = document.querySelectorAll('.transaction');
 
         transactionsElements.forEach(transaction => {
@@ -372,15 +411,9 @@ const EventListeners = {
                 Transaction.Remove(index);
             });
         });
-        
-        document.querySelector(".new_income").addEventListener('click', function() {
-            Modal.ActivateModal('income');
-        });
-
-        document.querySelector(".new_expense").addEventListener('click', function() {
-            Modal.ActivateModal('expense');
-        });
     }
 }
 
 App.Init();
+EventListeners.SubscribeEventListeners();
+DOM.CheckWebpagetheme();

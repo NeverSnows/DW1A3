@@ -1,3 +1,4 @@
+en-US
 Changes
 1 - Restructured the class system to future-proof the software and ensure scalability.
 2 - Replaced HTML header elements with paragraph elements to avoid residual atributes.
@@ -9,8 +10,25 @@ Changes
 8 - Added a confirmation step when deleting a transaction to avoid accidental deletions.
 9 - Split the "New Transaction" button into "New Income" and "New Expense" buttons to increase user friendliness.
 10 - Replaced all "onclick" atributes on html with EventListeners on javascript;
-11 - Added an alternating color on teh Transactions Table to improve visibility;
+11 - Added an alternating color on the Transactions Table to improve visibility;
 12 - Adjusted form input method to account for floating point error;
+13 - A dark theme has been added and made it so that the theme prefference is store on Local Storage.
 
 TODO:
 1 - FIX THE FUCKING FOOTER.
+
+pt-BR
+Mudanças:
+1 - Reestruturou-se o sistema de classes para tornar o software à prova de futuro e garantir escalabilidade;
+2 - Substituiu-se elementos de cabeçalho HTML por elementos de parágrafo para evitar atributos residuais;
+3 - Adicionada inversão de cores a determinados botões para melhorar a visibilidade e compreensão do usuário;
+4 - Introduzida funcionalidade de "transação neutra", que anteriormente estava ausente;
+5 - Foi alterado o ícone do botão "transação negativa" para um ícone de "excluir transação" para melhorar a clareza;
+6 - Substituiu-se um alerta desagradável por uma mensagem mais elegante "Campo obrigatório" que aparece abaixo de cada campo de formulário vazio;
+7 - Implementado um fundo com mudança de cor no cartão de saldo total para indicar o status do saldo do usuário;
+8 - Adicionada uma etapa de confirmação ao excluir uma transação para evitar exclusões acidentais;
+9 - Dividiu-se o botão "Nova transação" em botões "Nova receita" e "Nova despesa" para aumentar a facilidade de uso do usuário;
+10 - Substituiram-se todos os atributos "onclick" no html por EventListeners em javascript;
+11 - Adicionada uma cor alternada na Tabela de Transações para melhorar a visibilidade;
+12 - Ajustou-se o método de entrada de formulário para contabilizar erros de ponto flutuante;
+13 - Foi adicionado um tema escuro que salva as configuracoes de tema no Local Storage.

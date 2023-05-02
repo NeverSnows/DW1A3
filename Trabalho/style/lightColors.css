@@ -1,0 +1,18 @@
+:root{
+    --bodyBackground: #f0f2f5;
+    --headerBackground: #2d4a22;
+    --pageTitle: #363f5f;
+    --totalPositive: #49aa26;
+    --totalNegative: #e95858;
+    --table_text: #969cb3;
+    --income: #12a544;
+    --expense: #e92929;
+    --button: #49aa26;
+    --buttonHover: #3dd705;
+    --creditHover: #b8b8b8;
+    --theme: #ffffff;
+    --oddRow: #e5e9f3;
+    --logo:white;
+    --helper: black;
+
+}
