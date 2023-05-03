@@ -144,11 +144,11 @@ const DOM = {
     },
 
     CheckWebpagetheme(){
-        if(Storage.get("theme") == 'light' ){
+        if(Storage.get("theme") == 'light'){
             document.getElementById('theme').setAttribute('href', 'style/lightColors.css');
             document.getElementById('change_theme').classList.add('light_theme');
             document.getElementById('change_theme').classList.remove('dark_theme');
-        }else{
+        }else if(Storage.get("theme") == 'dark'){
             document.getElementById('theme').setAttribute('href', 'style/darkColors.css');
             document.getElementById('change_theme').classList.add('dark_theme');
             document.getElementById('change_theme').classList.remove('light_theme');
