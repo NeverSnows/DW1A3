@@ -130,7 +130,7 @@ const DOM = {
     },
 
     SwapWebpagetheme(){
-        if(Storage.get("theme") == 'light' || Storage.get("theme") == null){
+        if(Storage.get("theme") == 'light' || Storage.get("theme") == ''){
             document.getElementById('theme').setAttribute('href', 'style/darkColors.css');
             document.getElementById('change_theme').classList.add('dark_theme');
             document.getElementById('change_theme').classList.remove('light_theme');
