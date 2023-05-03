@@ -130,12 +130,12 @@ const DOM = {
     },
 
     SwapWebpagetheme(){
-        if(Storage.get("theme") == 'light' ){
+        if(Storage.get("theme") == 'light' || Storage.get("theme") == null){
             document.getElementById('theme').setAttribute('href', 'style/darkColors.css');
             document.getElementById('change_theme').classList.add('dark_theme');
             document.getElementById('change_theme').classList.remove('light_theme');
             Storage.set('dark', "theme");
-        }else{
+        }else if(Storage.get("theme") == 'dark' ){
             document.getElementById('theme').setAttribute('href', 'style/lightColors.css');
             document.getElementById('change_theme').classList.add('light_theme');
             document.getElementById('change_theme').classList.remove('dark_theme');
