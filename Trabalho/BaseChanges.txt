@@ -1,19 +1,19 @@
 
-Mudanças backend:
+Mudanças back-end:
 
 1 - Reestruturou-se o sistema de classes para tornar o software à prova de alterações futuras e garantir escalabilidade;
 2 - Substituiu-se elementos de cabeçalho HTML por elementos de parágrafo para evitar atributos residuais;
 3 - Substituiram-se todos os atributos "onclick" no html por EventListeners em javascript;
 4 - Ajustou-se o método de entrada de formulário para contabilizar erros de ponto flutuante;
 
-Mudanças frontend:
+Mudanças front-end:
 
 1 - Adicionada inversão de cores a determinados botões para melhorar a visibilidade e compreensão do usuário;
 2 - Introduzida funcionalidade de "transação neutra", que anteriormente estava ausente;
-3 - Foi alterado o ícone do botão "transação negativa" para um ícone de "excluir transação" para melhorar a clareza;
-4 - Substituiu-se um alerta desagradável por uma mensagem mais elegante "Campo obrigatório" que aparece abaixo de cada campo de formulário vazio;
+3 - Foi alterado o ícone do botão de excluir transacao para melhorar a clareza;
+4 - Substituiu-se um alerta desagradável por uma mensagem mais elegante "*Campo obrigatório" que aparece abaixo de cada campo de formulário vazio;
 5 - Implementado um fundo com mudança de cor no cartão de saldo total para indicar o status do saldo do usuário;
 6 - Adicionada uma etapa de confirmação ao excluir uma transação para evitar exclusões acidentais;
-7 - Dividiu-se o botão "Nova transação" em botões "Nova receita" e "Nova despesa" para aumentar a facilidade de uso do usuário;
+7 - Dividiu-se o botão "Nova transação" em botões "Nova entrada" e "Nova saida" para aumentar a facilidade de uso do usuário;
 8 - Adicionada uma cor alternada na Tabela de Transações para melhorar a visibilidade;
 9 - Foi adicionado um tema escuro que salva as configuracoes de tema no Local Storage.
