@@ -8,7 +8,7 @@ Mudanças back-end:
 
 Mudanças front-end:
 
-1 - Adicionada inversão de cores a determinados botões para melhorar a visibilidade e compreensão do usuário;
+1 - Adicionada inversão de cores a determinados botões para melhorar a visibilidade;
 2 - Introduzida funcionalidade de "transação neutra" - valor de 0;
 3 - Foi alterado o ícone do botão de excluir transacao para melhorar a clareza;
 4 - Substituiu-se um alerta desagradável por uma mensagem mais elegante "*Campo obrigatório" que aparece abaixo de cada campo de formulário vazio;
