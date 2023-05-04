@@ -17,12 +17,14 @@ const testTransactions = [
 ];
 
 const Modal = {
+    //Handles deactivation of Form modal overlay.
     DeactivateModal(){
         document.querySelector('.modal_overlay').classList.remove('active');
         document.querySelector('.modal_overlay').classList.add('inactive')
         Form.DeactivateAllForcedFields();
     },
 
+    //Handles activation of Form modal overlay.
     ActivateModal(type){
         Form.DeactivateAllForcedFields();
         if(type == 'income'){
@@ -41,7 +43,10 @@ const Modal = {
 const DOM = {
     transactionsContainer: document.querySelector('.table_body'),
     lastActiveQuestionDelete: 0,
+    theme: document.getElementById('theme'),
+    changeTheme: document.getElementById('change_theme'),
 
+    //Creates a table row - tr - and adds its internal data based on the received transaction and index.
     AddTransaction(transaction, index){
         const tr = document.createElement('tr');
         tr.classList.add('transaction');
@@ -57,10 +62,12 @@ const DOM = {
         this.UpdateBalance();
     },
 
+    //Removes all trasnactions from HTML transactions table.
     ClearTransactions(){
         DOM.transactionsContainer.innerHTML = "";
     },
 
+    //Represents the insinde data of a row from the transactions table.
     InnerHTMLTransaction(transaction, index){
         let transactionType;
 
@@ -88,31 +95,37 @@ const DOM = {
         return html;
     },
 
+    //Calculates and sets  income, expense and total on balance cards.
     UpdateBalance(){
         const transactionTotal = Transaction.CalculateTotal();
+        const cardTotal = document.querySelector('.card_total');
 
         document.querySelector('.card_income .card_value').innerHTML = Utils.FormatCurrencyWithSignal(Transaction.CalculateIncomes());
         document.querySelector('.card_expense .card_value').innerHTML = Utils.FormatCurrencyWithSignal(Transaction.CalculateExpenses());
         document.querySelector('.card_total .card_value').innerHTML = Utils.FormatCurrencyWithSignal(transactionTotal);
 
+
+        //Sets appropriate color to total balance
         if(transactionTotal > 0){
-            document.querySelector('.card_total').classList.remove('card_total_negative');
-            document.querySelector('.card_total').classList.remove('card_total_neutral');
-            document.querySelector('.card_total').classList.add('card_total_positive');
+            cardTotal.classList.remove('card_total_negative');
+            cardTotal.classList.remove('card_total_neutral');
+            cardTotal.classList.add('card_total_positive');
         }else if(transactionTotal < 0){
-            document.querySelector('.card_total').classList.remove('card_total_positive');
-            document.querySelector('.card_total').classList.remove('card_total_neutral');
-            document.querySelector('.card_total').classList.add('card_total_negative');
+            cardTotal.classList.remove('card_total_positive');
+            cardTotal.classList.remove('card_total_neutral');
+            cardTotal.classList.add('card_total_negative');
         }else{
-            document.querySelector('.card_total').classList.remove('card_total_positive');
-            document.querySelector('.card_total').classList.remove('card_total_negative');
-            document.querySelector('.card_total').classList.add('card_total_neutral');
+            cardTotal.classList.remove('card_total_positive');
+            cardTotal.classList.remove('card_total_negative');
+            cardTotal.classList.add('card_total_neutral');
         }
     
     },
 
+    //Activates delete confirmation buttons on a row defined by "index". 
+    //Prevents two confirmation forms to be active at the same time
     ActivateQuestionDelete(index){
-        this.DeactivateQuestionDelete(this.lastActiveQuestionDelete);
+        this.DeactivateQuestionDelete(this.lastActiveQuestionDelete);//Deactivates previously pressed active confirmation buttons
         document.querySelector('.transaction[data-index="' + index + '"] .question_delete_transaction').classList.remove('inactive');
         document.querySelector('.transaction[data-index="' + index + '"] .question_delete_transaction').classList.add('active');
         document.querySelector('.transaction[data-index="' + index + '"] .delete_transaction_icon').classList.remove('active');
@@ -120,6 +133,7 @@ const DOM = {
         this.lastActiveQuestionDelete = index;
     },
 
+    //Deactivates both confirmation buttons generated when deleting a transaction under a row defined by "index".
     DeactivateQuestionDelete(index){
         if(document.querySelector('.transaction[data-index="' + index + '"]') != null){
             document.querySelector('.transaction[data-index="' + index + '"] .question_delete_transaction').classList.remove('active');
@@ -129,39 +143,44 @@ const DOM = {
         }
     },
 
+    //Checks current theme prefference on sotrage and swaps it.
     SwapWebpagetheme(){
-        if(Storage.get("theme") == 'light' || Storage.get("theme") == ''){
-            document.getElementById('theme').setAttribute('href', 'style/darkColors.css');
-            document.getElementById('change_theme').classList.add('dark_theme');
-            document.getElementById('change_theme').classList.remove('light_theme');
+        if(Storage.get("theme") == 'light' ){
+            this.theme.setAttribute('href', 'style/darkColors.css');
+            this.changeTheme.classList.add('dark_theme');
+            this.changeTheme.classList.remove('light_theme');
             Storage.set('dark', "theme");
-        }else if(Storage.get("theme") == 'dark' ){
-            document.getElementById('theme').setAttribute('href', 'style/lightColors.css');
-            document.getElementById('change_theme').classList.add('light_theme');
-            document.getElementById('change_theme').classList.remove('dark_theme');
+        }else{
+            this.theme.setAttribute('href', 'style/lightColors.css');
+            this.changeTheme.classList.add('light_theme');
+            this.changeTheme.classList.remove('dark_theme');
             Storage.set('light', "theme");
         }
     },
 
+    //Checks current theme prefference from storage, and then sets appropriate theme. Should be called on start.
     CheckWebpagetheme(){
-        if(Storage.get("theme") == 'light'){
-            document.getElementById('theme').setAttribute('href', 'style/lightColors.css');
-            document.getElementById('change_theme').classList.add('light_theme');
-            document.getElementById('change_theme').classList.remove('dark_theme');
-        }else if(Storage.get("theme") == 'dark'){
-            document.getElementById('theme').setAttribute('href', 'style/darkColors.css');
-            document.getElementById('change_theme').classList.add('dark_theme');
-            document.getElementById('change_theme').classList.remove('light_theme');
+        if(Storage.get("theme") == 'light' ){
+            this.theme.setAttribute('href', 'style/lightColors.css');
+            this.changeTheme.classList.add('light_theme');
+            this.changeTheme.classList.remove('dark_theme');
+        }else{
+            this.theme.setAttribute('href', 'style/darkColors.css');
+            this.changeTheme.classList.add('dark_theme');
+            this.changeTheme.classList.remove('light_theme');
         }
     }
     
 }
 
 const Storage = {
+    //Get a value - such as an array or a string - from the storage, under the name of a 
+    //key - string must be an existing register on local storage, or it will return an empty array instead.
     get(key){
         return JSON.parse(localStorage.getItem(key)) || [];
     },
 
+    //Set a value - such as an array or a string - to the storage, under the name of a key - must be a string.
     set(value, key){
         localStorage.setItem(key, JSON.stringify(value));
     }
@@ -170,18 +189,21 @@ const Storage = {
 const Transaction = {
     transactionsList: Storage.get("transactions"),
 
-    //transactionsList: testTransactions, //TODO remove upon release
+    //transactionsList: testTransactions,
 
+    //Adds a transaction from the transactions list and updates webpage.
     Add(transaction){
         this.transactionsList.push(transaction);
         App.Reload();
     },
 
+    //Removes a transaction from the transactions list and updates webpage.
     Remove(index){
         this.transactionsList.splice(index, 1);
         App.Reload();
     },
 
+    //Adds all incomes and returns its value.
     CalculateIncomes(){
         let incomes = 0;
 
@@ -193,6 +215,7 @@ const Transaction = {
         return incomes;
     },
 
+    //Adds all expenses and returns its value.
     CalculateExpenses(){
         let expenses = 0;
 
@@ -210,13 +233,15 @@ const Transaction = {
 }
 
 const Utils = {
+    //Formats currency absolute value to pt-BR format;
     FormatCurrency(value){
-        value = String(value).replace(/\D/g, "");
+        value = String(value).replace(/\D/g, "");//Removes all non digits.
         value = Number(value) / 100;
         value = value.toLocaleString("pt-BR",{style: "currency", currency: "BRL"})
         return value;
     },
 
+    //Returns the amount, formated to pt-BR currency and with its correct a signal.
     FormatCurrencyWithSignal(value){
         let signal;
 
@@ -231,8 +256,9 @@ const Utils = {
         return signal + this.FormatCurrency(value);
     },
 
+    //Returns ammount with no decimal places and with its respective symbol.
     FormatAmount(value){
-        let expense = (value * 100).toFixed(2);
+        let expense = (value * 100).toFixed(2); //toFixed() is used to prevent floating point math errors.
         
         expense = expense.toString().replace('-', '');
         
@@ -241,18 +267,19 @@ const Utils = {
         }else{
             return Number('-' + expense);
         }
-        
     },
 
+    //Returns date on a more user friendly pt-BR format
     FormatDate(value){
-        //1999-12-31
+        //Received format: 1999-12-31
         const splicedDate = value.split("-");
-        //31/12/1999
+        //Output format: 31/12/1999
         return `${splicedDate[2]}/${splicedDate[1]}/${splicedDate[0]}`;
     },
 }
 
 const App = {
+    //Gets transactions list and adds it to web page, subscribes event listeners and save transactions on storage.
     Init(){
         if(Transaction.transactionsList.length > 0){
             Transaction.transactionsList.forEach(function(transaction, index){
@@ -265,6 +292,7 @@ const App = {
         Storage.set(Transaction.transactionsList, "transactions");
     },
 
+    //Called every time an action should change web page.
     Reload(){
         DOM.ClearTransactions();
         this.Init();
@@ -276,15 +304,21 @@ const Form = {
     amount: document.getElementById('transaction_amount'),
     date: document.getElementById('transaction_date'),
 
+    descriptionForcedField: document.getElementById('description_forced_field'),
+    amountForcedField: document.getElementById('amount_forced_field'),
+    dateForcedField: document.getElementById('date_forced_field'),
+
+    //Returns all form fields values.
     getValues(){
         return{
-            description: Form.description.value,
-            amount: Form.amount.value,
-            date: Form.date.value
+            description: this.description.value,
+            amount: this.amount.value,
+            date: this.date.value
             //{description: 'AAAAAAAAA', amount: '11111111', date: '2002-09-01'}
         }
     },
 
+    //Gets form fields and format them.
     FormatValues(){
         let{description, amount, date} = this.getValues();
         amount = Utils.FormatAmount(amount);
@@ -297,6 +331,7 @@ const Form = {
         }
     },
 
+    //Checks if any field is empty.
     ValidateFields(){
         const{description, amount, date} = this.getValues();
 
@@ -305,18 +340,20 @@ const Form = {
         }
     },
 
+    //Resets state of form fields.
     ClearFields(){
         this.description.value = "";
         this.amount.value = "";
         this.date.value = "";
     },
 
+    //Handles transaction submission.
     SubmitNewTransaction(event){
         try{  
             event.preventDefault();
             this.ValidateFields();
             const transaction = this.FormatValues();
-            this.SaveTransaction(transaction);
+            Transaction.Add(transaction);
             this.ClearFields();
             Modal.DeactivateModal();
         }catch(error){
@@ -324,50 +361,49 @@ const Form = {
         }
     },
 
-    SaveTransaction(transaction){
-        Transaction.Add(transaction);
-    },
-
+    //Sets all "*Obligatory fields" inactive. Used to reset form initial state.
     DeactivateAllForcedFields(){ 
-        document.getElementById('description_forced_field').classList.remove('active');
-        document.getElementById('amount_forced_field').classList.remove('active');
-        document.getElementById('date_forced_field').classList.remove('active');
-        document.getElementById('description_forced_field').classList.add('inactive');
-        document.getElementById('amount_forced_field').classList.add('inactive');
-        document.getElementById('date_forced_field').classList.add('inactive');
+        this.descriptionForcedField.classList.remove('active');
+        this.descriptionForcedField.classList.add('inactive');
+        this.amountForcedField.classList.remove('active');
+        this.amountForcedField.classList.add('inactive');
+        this.dateForcedField.classList.remove('active');
+        this.dateForcedField.classList.add('inactive');
     },
 
+    //Sets  the "*Obligatory field" on forms active or inactive.
     ActivateForcedFields(){
         const{description, amount, date} = this.getValues();
-            
+
         if(description.trim() === "" ){
-            document.getElementById('description_forced_field').classList.add('active');
-            document.getElementById('description_forced_field').classList.remove('inactive');
+            this.descriptionForcedField.classList.add('active');
+            this.descriptionForcedField.classList.remove('inactive');
         }else{
-            document.getElementById('description_forced_field').classList.remove('active');
-            document.getElementById('description_forced_field').classList.add('inactive');
+            this.descriptionForcedField.classList.remove('active');
+            this.descriptionForcedField.classList.add('inactive');
         }
 
         if(amount.trim() === ""){
-            document.getElementById('amount_forced_field').classList.add('active');
-            document.getElementById('amount_forced_field').classList.remove('inactive');
-
+            this.amountForcedField.classList.add('active');
+            this.amountForcedField.classList.remove('inactive');
         }else{
-            document.getElementById('amount_forced_field').classList.remove('active');
-            document.getElementById('amount_forced_field').classList.add('inactive');
+            this.amountForcedField.classList.remove('active');
+            this.amountForcedField.classList.add('inactive');
         }
 
         if(date.trim() === ""){
-            document.getElementById('date_forced_field').classList.add('active');
-            document.getElementById('date_forced_field').classList.remove('inactive');
+            this.dateForcedField.classList.add('active');
+            this.dateForcedField.classList.remove('inactive');
         }else{
-            document.getElementById('date_forced_field').classList.remove('active');
-            document.getElementById('date_forced_field').classList.add('inactive');
+            this.dateForcedField.classList.remove('active');
+            this.dateForcedField.classList.add('inactive');
         }
     }
 }
 
 const EventListeners = {
+    //Subscribes event lsiteners to components that wont change over time. 
+    //Should be called once at the start.
     SubscribeEventListeners(){
 
         document.getElementById('cancel_transaction').addEventListener('click', function() {
@@ -391,6 +427,7 @@ const EventListeners = {
         });
     },
 
+    //Subscribes event listeners to components that will change over time, such as table rows.
     SubscribeDynamicEventListeners(){
         const transactionsElements = document.querySelectorAll('.transaction');
 
