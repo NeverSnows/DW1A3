@@ -9,7 +9,7 @@ Mudanças back-end:
 Mudanças front-end:
 
 1 - Adicionada inversão de cores a determinados botões para melhorar a visibilidade e compreensão do usuário;
-2 - Introduzida funcionalidade de "transação neutra", que anteriormente estava ausente;
+2 - Introduzida funcionalidade de "transação neutra" - valor de 0;
 3 - Foi alterado o ícone do botão de excluir transacao para melhorar a clareza;
 4 - Substituiu-se um alerta desagradável por uma mensagem mais elegante "*Campo obrigatório" que aparece abaixo de cada campo de formulário vazio;
 5 - Implementado um fundo com mudança de cor no cartão de saldo total para indicar o status do saldo do usuário;
