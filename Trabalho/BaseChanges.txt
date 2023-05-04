@@ -8,12 +8,12 @@ Mudanças back-end:
 
 Mudanças front-end:
 
-1 - Adicionada inversão de cores a determinados botões para melhorar a visibilidade;
-2 - Introduzida funcionalidade de "transação neutra" - valor de 0;
-3 - Foi alterado o ícone do botão de excluir transacao para melhorar a clareza;
-4 - Substituiu-se um alerta desagradável por uma mensagem mais elegante "*Campo obrigatório" que aparece abaixo de cada campo de formulário vazio;
-5 - Implementado um fundo com mudança de cor no cartão de saldo total para indicar o status do saldo do usuário;
-6 - Adicionada uma etapa de confirmação ao excluir uma transação para evitar exclusões acidentais;
-7 - Dividiu-se o botão "Nova transação" em botões "Nova entrada" e "Nova saida" para aumentar a facilidade de uso do usuário;
+1 - Dividiu-se o botão "Nova transação" em botões "Nova entrada" e "Nova saida" para aumentar a facilidade de uso do usuário;
+2 - Adicionada inversão de cores a determinados botões para melhorar a visibilidade;
+3 - Introduzida funcionalidade de "transação neutra" - valor de 0;
+4 - Foi alterado o ícone do botão de excluir transacao para melhorar a clareza;
+5 - Substituiu-se um alerta desagradável por uma mensagem mais elegante "*Campo obrigatório" que aparece abaixo de cada campo de formulário vazio;
+6 - Implementado um fundo com mudança de cor no cartão de saldo total para indicar o status do saldo do usuário;
+7 - Adicionada uma etapa de confirmação ao excluir uma transação para evitar exclusões acidentais;
 8 - Adicionada uma cor alternada na Tabela de Transações para melhorar a visibilidade;
 9 - Foi adicionado um tema escuro que salva as configuracoes de tema no Local Storage.
