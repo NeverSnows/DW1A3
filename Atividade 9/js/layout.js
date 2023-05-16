@@ -1,10 +1,14 @@
 
 /*
+learning shit n' stuff:
+
 https://jsfiddle.net/vmr9q4o0/
 https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#unique_file_type_specifiers
 */
 
+//General utilities.
 const Utils = {
+    //Defines acceptable file formats.
     fileTypes: [
         "image/apng",
         "image/bmp",
@@ -18,18 +22,20 @@ const Utils = {
         "image/x-icon"
     ],
 
+    //Checks if provided file is of an acceptable file format.
     validFileType(file) {  
-        
         return this.fileTypes.includes(file.type);
     }
 };
 
+//Handles code output creation.
 const Output = {
+    //Generates output in code format with appropriate coloring on each segment.
     generateOutput(){  
         const output = document.createElement("div");
         let codeOutput = '<p class="atribute-color">filter:</p>'
 
-        Filters.imageFiltersList.forEach(function(filter, index){
+        Filter.imageFiltersList.forEach(function(filter, index){
 
             codeOutput += 
             '<p class="text-color">&nbsp' + filter.filterName + '</p>' +
@@ -44,9 +50,11 @@ const Output = {
         output.classList.add("code");
         return output;
 
+        //Example: 
         //filter: blur(34%) sepia(23%) drop-shadow(10px 20px 30px #343434);
     },
 
+    //Resets code display and then outputs formated code.
     updateOutputDisplay(){
         const output = document.querySelector(".output-code");
         output.innerHTML = '';
@@ -54,9 +62,11 @@ const Output = {
     }
 };
 
+//Handles every major interaction with document.
 const DOM = {
     newFilterButton: document.getElementById("new-filter"),
 
+    //Creates a filter by making a div with "filter" class, using the filter template and then sets it's internal values
     createFilter(filter, index){
         const filterElement = document.createElement('div');
 
@@ -75,6 +85,7 @@ const DOM = {
         document.querySelector('.filters').innerHTML = '';
     },
 
+    //Sets a filter template.
     innerFilter(){
         const filter = `
         <select name="select-filter" class="filter-type">
@@ -95,6 +106,8 @@ const DOM = {
         return filter;
     },
 
+    //Gets an image from user, validates it and then creates the appropriate image element.
+    //Default image element is a coala.
     updateImageDisplay() {
         const input = document.getElementById('input-target-image');
         const preview = document.querySelector('.preview');
@@ -104,29 +117,31 @@ const DOM = {
             preview.removeChild(preview.firstChild);
         }
       
+        //Triggers if there are no files selected, or if file is invalid.
         if (curFiles.length === 0 || !Utils.validFileType(curFiles[0])) {
             const defaultImage = document.createElement('img');
             defaultImage.src = "assets/images/coala.jpg";
             defaultImage.alt = "Coala Image";
             defaultImage.classList.add("target-image");
             preview.appendChild(defaultImage);
-            console.log("no files");
         } else {
             const newImage = document.createElement('img');
             newImage.alt = "Your Image";
             newImage.classList.add("target-image");
             newImage.src = URL.createObjectURL(curFiles[0]);
-            preview.appendChild(newImage);
-            console.log("success");
-            
+            preview.appendChild(newImage);            
         }
+
+        //curFiles represents a list of selected files, in this case we msut use a single one,
+        //so curFiles[0] gets the first one and ignores the rest.
 
         this.updateFiltersOntarget();
     },
 
+    //Iterates through filters list and appends filter atribute to both image and logo.
     updateFiltersOntarget(){
         let filtersString = "";
-        Filters.imageFiltersList.forEach(filter => {
+        Filter.imageFiltersList.forEach(filter => {
             filtersString += filter.filterName + "(" + filter.value + ") ";
         });
 
@@ -134,6 +149,7 @@ const DOM = {
         document.querySelector(".logo").style.filter = filtersString;
     },
 
+    //Selects an example of how to use each filter.
     updateInputPlaceholder(index){
         let placeholderText = '';
         const selectedValue = document.querySelector('.filter[data-index="' + index + '"] .filter-type').value;
@@ -154,7 +170,10 @@ const DOM = {
     }
 };
 
-const Filters = {
+//Handles filter list maintenance.
+const Filter = {
+    //Main filters list. Everything is centered around this.
+    //After every change on this list, we msut call App.reload() to update GUI.
     imageFiltersList: [],
 
     addNewFilter(filter){
@@ -178,7 +197,9 @@ const Filters = {
     }
 };
 
+//Handles all event listeners
 const EventListeners = {
+    //Subscribes elements that wont change. MUST be called once at the start.
     subscribeEventListeners(){
         document.getElementById("input-target-image").addEventListener('change', function(){
             DOM.updateImageDisplay();
@@ -186,10 +207,12 @@ const EventListeners = {
 
         document.getElementById("new-filter").addEventListener('click', function(){
             const imageFilterTemplate = {filterName: 'blur', value: ''};
-            Filters.addNewFilter(imageFilterTemplate);
+            Filter.addNewFilter(imageFilterTemplate);
         });
     },
 
+    //Subscribes all elements that change over time, such as filters.
+    //MUST be called on every interface redraw.
     subscribeDynamicEventListeners(){
         const elementFiltersList = document.querySelectorAll(".filter");
         elementFiltersList.forEach(elementFilter => {
@@ -197,28 +220,31 @@ const EventListeners = {
             const index = elementFilter.dataset.index;
 
             elementFilter.querySelector("select").addEventListener('change', function(event){
-                Filters.updateFiltersListName(event.target.value, index);
-                Filters.updateFiltersListValue('', index);
+                Filter.updateFiltersListName(event.target.value, index);
+                Filter.updateFiltersListValue('', index);
                 DOM.updateInputPlaceholder(index);
                 DOM.updateFiltersOntarget();
             });
 
             elementFilter.querySelector("input").addEventListener('change', function(event){
-                Filters.updateFiltersListValue(event.target.value, index);
+                Filter.updateFiltersListValue(event.target.value, index);
                 DOM.updateFiltersOntarget();
             });
 
             elementFilter.querySelector(".delete-button").addEventListener('click', function(){
-                Filters.removeFilter(index);
+                Filter.removeFilter(index);
             });
         }); 
     },
 };
 
+//Handles order of updates and GUI maintenance.
 const App = {
+    //Checks filters list and creates a filter visual element for each of them, 
+    //then does GUI maintenance.
     init(){
-        if(Filters.imageFiltersList.length > 0){
-            Filters.imageFiltersList.forEach(function(filter, index){
+        if(Filter.imageFiltersList.length > 0){
+            Filter.imageFiltersList.forEach(function(filter, index){
                 DOM.createFilter(filter, index);
             })
         }
