@@ -199,7 +199,8 @@ const Filter = {
 
 //Handles all event listeners
 const EventListeners = {
-    //Subscribes elements that wont change. MUST be called once at the start.
+    //Subscribes elements that wont change. 
+    //MUST be called only once at the start to avoid listener duplicity.
     subscribeEventListeners(){
         document.getElementById("input-target-image").addEventListener('change', function(){
             DOM.updateImageDisplay();
