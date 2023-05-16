@@ -121,16 +121,17 @@ const DOM = {
             
         }
 
-        this.updateFiltersOnImage();
+        this.updateFiltersOntarget();
     },
 
-    updateFiltersOnImage(){
+    updateFiltersOntarget(){
         let filtersString = "";
         Filters.imageFiltersList.forEach(filter => {
             filtersString += filter.filterName + "(" + filter.value + ") ";
         });
 
         document.querySelector(".target-image").style.filter = filtersString;
+        document.querySelector(".logo").style.filter = filtersString;
     },
 
     updateInputPlaceholder(index){
@@ -199,12 +200,12 @@ const EventListeners = {
                 Filters.updateFiltersListName(event.target.value, index);
                 Filters.updateFiltersListValue('', index);
                 DOM.updateInputPlaceholder(index);
-                DOM.updateFiltersOnImage();
+                DOM.updateFiltersOntarget();
             });
 
             elementFilter.querySelector("input").addEventListener('change', function(event){
                 Filters.updateFiltersListValue(event.target.value, index);
-                DOM.updateFiltersOnImage();
+                DOM.updateFiltersOntarget();
             });
 
             elementFilter.querySelector(".delete-button").addEventListener('click', function(){
@@ -228,7 +229,7 @@ const App = {
     reload(){
         DOM.clearFilters();
         this.init();
-        DOM.updateFiltersOnImage();
+        DOM.updateFiltersOntarget();
     },
 }
 

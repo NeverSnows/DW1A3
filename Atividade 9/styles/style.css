@@ -4,6 +4,7 @@ body{
     align-items: center;
     background-color: var(--bodyBg);
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin: 0;
 }
 
 .dark-theme{
@@ -25,11 +26,28 @@ body{
 .content-style{
     transition: all 0.5s;
     width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logo{
+    font-size: 3rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 2rem 0;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    transition: all 0.5s;
+}
+
+.logo p{
+    margin: 0;
 }
 
 .preview{
     width: 100%;
-    margin-top: 2rem;
 }
 
 .target-image{
@@ -117,6 +135,7 @@ body{
     flex-direction: column;
     align-items: center;
     margin-top: 1rem;
+    width: 100%;
 }
 
 .code{
@@ -170,6 +189,11 @@ body{
 }
 
 @media (max-width: 700px){
+    .logo{
+        font-size: 2rem;
+        transition: all 0.5s;
+    }
+
     .content-style{
         width:80%;
         transition: all 0.5s;
