@@ -169,3 +169,16 @@ body{
     }
 }
 
+@media (max-width: 700px){
+    .content-style{
+        width:80%;
+        transition: all 0.5s;
+    }
+}
+
+@media (max-width: 500x){
+    .content-style{
+        width:90%;
+        transition: all 0.5s;
+    }
+}
