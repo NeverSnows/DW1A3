@@ -15,6 +15,7 @@ body{
     --newFilterBtnBorder: var(--filterborder);
     --newFilterBtnBg: var(--filterBg);
     --newFilterBtnBgHVR: #bbc1c4;
+    --targetImageFormTxt: #d4d4d4;
 
     --codeBg: #202225;
     --codeAtribute: #8cc3dc;
@@ -60,6 +61,7 @@ body{
     flex-direction: row;
     justify-content: center;
     margin: 0.5rem 0 1rem 0;
+    color: var(--targetImageFormTxt);
 }
 
 .input-target-image{
