@@ -17,6 +17,7 @@
 
 #change-theme:checked ~ *{
     filter: invert(1);
+    
 }
 
 #change-theme:before{

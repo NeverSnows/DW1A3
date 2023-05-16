@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Element Filter Tester</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="icon" href="assets/images/favicon.png">
+</head>
+<body class="dark-theme">
+    <content class="content-style">
+        <div class="preview">
+            <img src="assets/images/coala.jpg" alt="Coala Image" class="target-image">
+        </div>
+        <form action="" class="target-image-form">
+            <label for="input-target-image">Select an image:&nbsp</label>
+            <input type="file" id="input-target-image" accept="image/*">
+        </form>
+        <div class="filters-container">
+            <div class="filters">
+                <!-- Filters get intserted here-->
+                <!-- <div class="filter">
+                    <select name="select-filter" class="filter-type">
+                        <option value="blur">Blur</option>
+                        <option value="brightness">Brightness</option>
+                        <option value="contrast">Contrast</option>
+                        <option value="drop-shadow">Drop Shadow</option>
+                        <option value="grayscale">Grayscale</option>
+                        <option value="hue-rotate">Hue Rotation</option>
+                        <option value="invert">Invert</option>
+                        <option value="opacity">Opacity</option>
+                        <option value="saturate">Saturate</option>
+                        <option value="sepia">Sepia</option>
+                    </select>
+                    <input type="text" class="filter-input" placeholder="11px">
+                    <button class="delete-button" id="delete-button">X</button>
+                </div> -->
+            </div>
+            <button class="new-filter-button" id="new-filter">+ New Filter</button>
+        </div>
+        <div class="output-code">
+            <!-- Filter css is placed here -->
+        </div>
+    </content>
+    <script src="js/layout.js"></script>
+</body>
+</html> 

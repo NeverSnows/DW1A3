@@ -50,11 +50,12 @@ const DOM = {
     AddTransaction(transaction, index){
         const tr = document.createElement('tr');
         tr.classList.add('transaction');
+        
         if((index % 2) == 1){
             tr.classList.add('odd_row');
         }
 
-        tr.innerHTML = this.InnerHTMLTransaction(transaction, index);
+        tr.innerHTML = this.InnerHTMLTransaction(transaction);
         tr.dataset.index = index;
 
         this.transactionsContainer.appendChild(tr);
@@ -68,7 +69,7 @@ const DOM = {
     },
 
     //Represents the insinde data of a row from the transactions table.
-    InnerHTMLTransaction(transaction, index){
+    InnerHTMLTransaction(transaction){
         let transactionType;
 
         if(transaction.amount > 0){
