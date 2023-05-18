@@ -1,3 +1,7 @@
+body, html{
+    height: 100%;
+}
+
 body{
     display: flex;
     flex-direction: column;
@@ -33,6 +37,9 @@ body{
     --newFilterBtnBgHVR: #bbc1c4;
     --targetImageFormTxt: #d4d4d4;
     --deleteFilterBtn: #960505;
+    --link: var(--targetImageFormTxt);
+    --linkHVR: rgb(157, 159, 167);
+    --footerBg: var(--codeBg);
 
     --codeBg: #202225;
     --codeTitleBg: #2c3138;
@@ -42,12 +49,14 @@ body{
     --codeNumber: #78b678;
 }
 
+
 .content-style{
     transition: all 0.5s;
     width: 30%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    flex: auto 1 0;
 }
 
 .logo{
@@ -258,6 +267,30 @@ body{
 
 .number-color{
     color: var(--codeNumber);
+}
+
+/* Footer */
+
+footer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    background-color: var(--footerBg);
+    margin-top: 3rem;
+}
+
+.link{
+    text-decoration: none;
+    color: var(--link);
+    transition: all 0.2s;
+    margin: 1rem;
+}
+
+.link:hover{
+    color: var(--linkHVR);
+    transition: all 0.2s;
 }
 
 @media (max-width: 1300px){
