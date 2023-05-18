@@ -22,13 +22,15 @@
         </div>
         <form action="" class="target-image-form">
             <label for="input-target-image" class="image-input-label">Select an image:&nbsp</label>
+            
             <input class="input-target-image" type="file" id="input-target-image" accept="image/*">
         </form>
         <div class="filters-container">
             <div class="filters">
                 <!-- Filters get intserted here-->
                 <!-- <div class="filter test-filtet">
-                    <select name="select-filter" class="filter-type">
+                    <label for="filter-type" class="hidden">Select filter</label>
+                    <select name="select-filter" class="filter-type" id="filter-type">
                         <option value="blur">Blur</option>
                         <option value="brightness">Brightness</option>
                         <option value="contrast">Contrast</option>
@@ -40,14 +42,18 @@
                         <option value="saturate">Saturate</option>
                         <option value="sepia">Sepia</option>
                     </select>
-                    <input type="text" class="filter-input" placeholder="11px">
+                    <label for="filter-input" class="hidden">Filter value</label>
+                    <input type="text" id="filter-input" class="filter-input" placeholder="11px">
                     <button class="delete-button" id="delete-button">X</button>
                 </div> -->
             </div>
             <button class="new-filter-button" id="new-filter">+ New Filter</button>
         </div>
         <div class="output-code-container">
-            <p class="output-code-title">CSS:</p>
+            <div class="output-code-title-container">
+                <p class="output-code-title">CSS:</p>
+                <img src="assets/images/copyIcon.png" alt="Copy to Clipboard" id="copy-btn" class="copy-btn">
+            </div>
             <div class="output-code">
                 <!-- Filter css is placed here -->
             </div>

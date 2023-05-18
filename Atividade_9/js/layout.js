@@ -33,18 +33,17 @@ const Output = {
     //Generates output in code format with appropriate coloring on each segment.
     generateOutput(){  
         const output = document.createElement("div");
-        let codeOutput = '<p class="atribute-color">filter:</p>'
+        let codeOutput = '<span class="atribute-color">filter:</span>'
 
-        Filter.imageFiltersList.forEach(function(filter, index){
-
+        Filter.imageFiltersList.forEach(function(filter){
             codeOutput += 
-            '<p class="text-color">&nbsp' + filter.filterName + '</p>' +
-            '<p class="parentheses-color">(</p>' + 
-            '<p class="number-color">' + filter.value + '</p>' +
-            '<p class="parentheses-color">)</p>';
+            '<span class="text-color">&nbsp' + filter.filterName + '</span>' +
+            '<span class="parentheses-color">(</span>' + 
+            '<span class="number-color">' + filter.value + '</span>' +
+            '<span class="parentheses-color">)</span>';
             
         })
-        codeOutput += '<p class="text-color">;</p>';
+        codeOutput += '<span class="text-color">;</span>';
 
         output.innerHTML = codeOutput;
         output.classList.add("code");
@@ -84,11 +83,13 @@ const DOM = {
     clearFilters(){
         document.querySelector('.filters').innerHTML = '';
     },
+    
 
     //Sets a filter template.
     innerFilter(){
         const filter = `
-        <select name="select-filter" class="filter-type">
+        <label for="filter-type" class="hidden">Select filter</label>
+        <select name="select-filter" class="filter-type" id="filter-type">
             <option value="blur">Blur</option>
             <option value="brightness">Brightness</option>
             <option value="contrast">Contrast</option>
@@ -100,7 +101,8 @@ const DOM = {
             <option value="saturate">Saturate</option>
             <option value="sepia">Sepia</option>
         </select>
-        <input type="text" class="filter-input" placeholder="11px">
+        <label for="filter-input" class="hidden">Filter value</label>
+        <input type="text" id="filter-input" class="filter-input" placeholder="11px">
         <button class="delete-button" id="delete-button">X</button>`;
         
         return filter;
@@ -167,7 +169,19 @@ const DOM = {
             case 'sepia': placeholderText = '0.7 or 70%'; break;
         }
         document.querySelector('.filter[data-index="' + index + '"] .filter-input').placeholder = placeholderText;
-    }
+    },
+
+    copyCssToClipboard(){
+        var targetCode = document.querySelectorAll(".code span");
+        var outputText = '';
+
+        targetCode.forEach(function(span){
+            outputText += span.textContent;
+        })
+        console.log(outputText);
+
+        navigator.clipboard.writeText(outputText.toString());
+    },
 };
 
 //Handles filter list maintenance.
@@ -209,6 +223,10 @@ const EventListeners = {
         document.getElementById("new-filter").addEventListener('click', function(){
             const imageFilterTemplate = {filterName: 'blur', value: ''};
             Filter.addNewFilter(imageFilterTemplate);
+        });
+
+        document.getElementById("copy-btn").addEventListener("click", function(){
+            DOM.copyCssToClipboard();
         });
     },
 
