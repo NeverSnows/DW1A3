@@ -271,7 +271,7 @@ body{
 
 }
 
-@media (max-width: 500x){
+@media (max-width: 500px){
     .logo{
         font-size: 1.5rem;
         transition: all 0.5s;
