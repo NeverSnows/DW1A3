@@ -200,6 +200,7 @@ body{
     width: 100%;
     background-color: var(--codeBg);
     border-radius: 0 0 0.7rem 0.7rem;
+    padding-bottom: 2rem;
 }
 
 .code{
@@ -270,6 +271,10 @@ body{
 }
 
 @media (max-width: 500x){
+    .logo{
+        font-size: 1.5rem;
+        transition: all 0.5s;
+    }
     .content-style{
         width:90%;
         transition: all 0.5s;
