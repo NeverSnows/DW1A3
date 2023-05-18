@@ -26,6 +26,7 @@ body{
     --newFilterBtnBg: var(--filterBg);
     --newFilterBtnBgHVR: #bbc1c4;
     --targetImageFormTxt: #d4d4d4;
+    --deleteFilterBtn: #960505;
 
     --codeBg: #202225;
     --codeTitleBg: #2c3138;
@@ -129,7 +130,7 @@ body{
     transition: all 0.5s;
     border: none;
     background-color: var(--filterBg);
-    color: #960505;
+    color: var(--deleteFilterBtn);
     font-size: 1rem;
     margin-left: 0.5rem;
     width: 1.2rem;
