@@ -88,7 +88,7 @@ const DOM = {
     //Sets a filter template.
     innerFilter(){
         const filter = `
-        <label for="filter-type" class="hidden">Select filter</label>
+        <label for="filter-type" class="hidden-no-width">Select filter</label>
         <select name="select-filter" class="filter-type" id="filter-type">
             <option value="blur">Blur</option>
             <option value="brightness">Brightness</option>
@@ -101,7 +101,7 @@ const DOM = {
             <option value="saturate">Saturate</option>
             <option value="sepia">Sepia</option>
         </select>
-        <label for="filter-input" class="hidden">Filter value</label>
+        <label for="filter-input" class="hidden-no-width">Filter value</label>
         <input type="text" id="filter-input" class="filter-input" placeholder="11px">
         <button class="delete-button" id="delete-button">X</button>`;
         
@@ -181,6 +181,14 @@ const DOM = {
         console.log(outputText);
 
         navigator.clipboard.writeText(outputText.toString());
+        this.displayCopyMessage();
+    },
+
+    displayCopyMessage(){
+        const messageElement = document.querySelector(".copy-message");
+
+        messageElement.classList.remove("hidden");
+        setTimeout(() => {messageElement.classList.add("hidden");} ,3000)
     },
 };
 

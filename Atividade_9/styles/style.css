@@ -11,9 +11,15 @@ body{
     display: none;
 }
 
-.hidden{
+.hidden-no-width{
+    transition: all 1s;
     width: 0px;
     height: 0px;
+    opacity: 0;
+}
+
+.hidden{
+    transition: all 1s;
     opacity: 0;
 }
 
@@ -172,6 +178,7 @@ body{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
 }
 
 .output-code-title{
@@ -181,10 +188,25 @@ body{
     margin: 0.5rem 0 0.2rem 0.7rem;
 }
 
+.copy-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.copy-message{
+    background-color: var(--filtersContainerBg);
+    font-size: 0.9rem;
+    font-family: Consolas, Menlo, "courier new", monospace;
+    padding: 0.2rem;
+    border-radius: 0 0.3rem 0.3rem 0;
+    transition: all 1s;
+}
+
 .copy-btn{
     transition: all 0.2s;
     height: 1.4rem;
-    margin: 0.3rem 0.7rem 0.3rem 0;
+    margin: 0.3rem 0.7rem 0.3rem 0.5rem;
     filter: invert() brightness(50%);
 }
 
