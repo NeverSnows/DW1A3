@@ -72,6 +72,7 @@ const DOM = {
         filterElement.classList.add('filter');
         filterElement.innerHTML = this.innerFilter();
         filterElement.dataset.index = index;
+        filterElement.draggable = true;
 
         filterElement.querySelector('select').value = filter.filterName;
         filterElement.querySelector('input').value = filter.value;
@@ -88,6 +89,7 @@ const DOM = {
     //Sets a filter template.
     innerFilter(){
         const filter = `
+        <img class="drag-icon" src="assets/images/drag-icon.svg" alt="drag icon" draggable="false">
         <label for="filter-type" class="hidden-no-width">Select filter</label>
         <select name="select-filter" class="filter-type" id="filter-type">
             <option value="blur">Blur</option>
@@ -219,7 +221,38 @@ const Filter = {
     }
 };
 
-//Handles all event listeners
+//Handles all drag events.
+const Drag = {
+    draggedElementIndex: undefined,
+    draggedOverElementIndex: undefined,
+
+    //When an elements is being dragged, we get a refference to that element index.
+    onDragStart(index){
+        Drag.draggedElementIndex = index;
+        //console.log("Dragged index: " + index);
+    },
+
+    //When we release an element, we swap it with the one below on a list, based on their index refferences
+    //Then, we re-render the list.
+    onDragEnd(){
+        if(Drag.draggedOverElementIndex != undefined){
+            const temp = Filter.imageFiltersList[Drag.draggedOverElementIndex];
+            
+            Filter.imageFiltersList[this.draggedOverElementIndex] = Filter.imageFiltersList[this.draggedElementIndex];
+            Filter.imageFiltersList[this.draggedElementIndex] = temp;
+            App.reload();
+            //console.log("Swap and reload!");
+        }
+    },
+
+    //When an element is being dragged of the this element, we get a refference to this element index.
+    onDragOver(index){
+        Drag.draggedOverElementIndex = index;
+        //console.log("Dragged over index: " + index);
+    },
+};
+
+//Handles all event listeners.
 const EventListeners = {
     //Subscribes elements that wont change. 
     //MUST be called only once at the start to avoid listener duplicity.
@@ -261,6 +294,23 @@ const EventListeners = {
             elementFilter.querySelector(".delete-button").addEventListener('click', function(){
                 Filter.removeFilter(index);
             });
+
+            //Drag listeners
+            elementFilter.querySelector(".drag-icon").addEventListener('click', function(){
+                Drag.onDragOver(index)
+            });
+
+            elementFilter.addEventListener('dragstart', () =>{
+                Drag.onDragStart(index);
+            })
+
+            elementFilter.addEventListener('dragend', () =>{
+                Drag.onDragEnd();
+            })
+
+            elementFilter.addEventListener('dragover', () =>{
+                Drag.onDragOver(index);
+            })
         }); 
     },
 };

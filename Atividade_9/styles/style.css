@@ -128,6 +128,13 @@ body{
     justify-content: space-between;
 }
 
+.drag-icon{
+    user-select: none;
+    cursor: grab;
+    height: 1.4rem;
+    margin: 0 1rem 0 0;
+}
+
 .filter-type{
     width: 30%;
     border: none;
@@ -136,7 +143,7 @@ body{
 }
 
 .filter-input{
-    width: 65%;
+    width: 60%;
     border: none;
     border-radius: 0.2rem;
 }
@@ -205,11 +212,16 @@ body{
 
 .copy-message{
     background-color: var(--filtersContainerBg);
+    height: 1.2rem;
     font-size: 0.9rem;
     font-family: Consolas, Menlo, "courier new", monospace;
     padding: 0.2rem;
-    border-radius: 0 0.3rem 0.3rem 0;
+    border-radius: 0.3rem 0.3rem 0 0.3rem;
     transition: all 1s;
+
+    display: flex;
+    flex-direction: row;
+    align-items: end;
 }
 
 .copy-btn{
