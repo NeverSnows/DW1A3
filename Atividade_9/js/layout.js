@@ -25,7 +25,40 @@ const Utils = {
     //Checks if provided file is of an acceptable file format.
     validFileType(file) {  
         return this.fileTypes.includes(file.type);
+    },
+    
+    
+    //location being either 0 (before) or 1 (after)
+    rearangeList(list = [], source = 0, target = 0, location = 1){ 
+        let tempList = list.slice();
+
+        if(source < target){
+            if(location){
+                location = 0;
+            }else{
+                location = 1;
+            }
+
+            list[target - location] = list[source];
+
+            for(let i = source; i < target - location; i++){
+                list[i] = tempList[i + 1];
+            }
+
+        }else if(source > target){
+            list[target + location] = list[source];
+
+            for(let i = target; i < source - location; i++){
+                list[i + location + 1] = tempList[i + location];
+            }
+        }
     }
+    /*
+    let myList = ["0", "1", "2", "3", "4", "5", "6", "7"];
+
+    rearangeList(myList, 7, 0, 0);
+    console.log(myList);
+    */
 };
 
 //Handles code output creation.
