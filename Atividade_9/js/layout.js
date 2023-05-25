@@ -26,39 +26,27 @@ const Utils = {
     validFileType(file) {  
         return this.fileTypes.includes(file.type);
     },
-    
-    
-    //location being either 0 (before) or 1 (after)
-    rearangeList(list = [], source = 0, target = 0, location = 1){ 
-        let tempList = list.slice();
 
-        if(source < target){
-            if(location){
-                location = 0;
+    //Takes 2 indexes and places the element at the first index before or after - defined by "insertAfter" -  the element at the second index on teh received list.
+    rearrangeList(list = [], source = 0, target = 0, insertAfter = false){
+        if(source != target){
+            source = Number(source);
+            target = Number(target);
+
+            const sourceElement = list[source];
+    
+            if(insertAfter){
+                list.splice(target + 1, 0, sourceElement);
+            } else{
+                list.splice(target, 0, sourceElement);
+            }
+            if(source > target){
+                list.splice(source + 1, 1);
             }else{
-                location = 1;
-            }
-
-            list[target - location] = list[source];
-
-            for(let i = source; i < target - location; i++){
-                list[i] = tempList[i + 1];
-            }
-
-        }else if(source > target){
-            list[target + location] = list[source];
-
-            for(let i = target; i < source - location; i++){
-                list[i + location + 1] = tempList[i + location];
+                list.splice(source, 1);  
             }
         }
-    }
-    /*
-    let myList = ["0", "1", "2", "3", "4", "5", "6", "7"];
-
-    rearangeList(myList, 7, 0, 0);
-    console.log(myList);
-    */
+    },
 };
 
 //Handles code output creation.
@@ -251,6 +239,19 @@ const Filter = {
     updateFiltersListValue(value, index){
         this.imageFiltersList[index].value = value;
         App.reload();
+    },
+
+    swapFilters(source, target){
+        const temp = Filter.imageFiltersList[target];
+        
+        Filter.imageFiltersList[target] = Filter.imageFiltersList[source];
+        Filter.imageFiltersList[source] = temp;
+        App.reload();
+    },
+
+    rearrangeFiltersList(source, target, insertAfter){
+        Utils.rearrangeList(Filter.imageFiltersList, source, target, insertAfter);
+        App.reload();
     }
 };
 
@@ -269,12 +270,8 @@ const Drag = {
     //Then, we re-render the list.
     onDragEnd(){
         if(Drag.draggedOverElementIndex != undefined){
-            const temp = Filter.imageFiltersList[Drag.draggedOverElementIndex];
-            
-            Filter.imageFiltersList[this.draggedOverElementIndex] = Filter.imageFiltersList[this.draggedElementIndex];
-            Filter.imageFiltersList[this.draggedElementIndex] = temp;
-            App.reload();
-            //console.log("Swap and reload!");
+            //Filter.swapFilters(Drag.draggedElementIndex, Drag.draggedOverElementIndex);
+            Filter.rearrangeFiltersList(Drag.draggedElementIndex, Drag.draggedOverElementIndex, true);
         }
     },
 
