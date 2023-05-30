@@ -1,8 +1,5 @@
 
 /*
-learning shit n' stuff:
-
-https://jsfiddle.net/vmr9q4o0/
 https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#unique_file_type_specifiers
 */
 
@@ -37,7 +34,7 @@ const Utils = {
     
             if(insertAfter){
                 list.splice(target + 1, 0, sourceElement);
-            } else{
+            }else{
                 list.splice(target, 0, sourceElement);
             }
             if(source > target){
@@ -126,7 +123,8 @@ const DOM = {
         </select>
         <label for="filter-input" class="hidden-no-width">Filter value</label>
         <input type="text" id="filter-input" class="filter-input" placeholder="11px">
-        <button class="delete-button" id="delete-button">X</button>`;
+        <button class="delete-button" id="delete-button">X</button>
+        `;
         
         return filter;
     },
@@ -259,6 +257,7 @@ const Filter = {
 const Drag = {
     draggedElementIndex: undefined,
     draggedOverElementIndex: undefined,
+    draggedAfter: true,
 
     //When an elements is being dragged, we get a refference to that element index.
     onDragStart(index){
@@ -271,13 +270,14 @@ const Drag = {
     onDragEnd(){
         if(Drag.draggedOverElementIndex != undefined){
             //Filter.swapFilters(Drag.draggedElementIndex, Drag.draggedOverElementIndex);
-            Filter.rearrangeFiltersList(Drag.draggedElementIndex, Drag.draggedOverElementIndex, true);
+            Filter.rearrangeFiltersList(Drag.draggedElementIndex, Drag.draggedOverElementIndex, Drag.draggedAfter);
         }
     },
 
     //When an element is being dragged of the this element, we get a refference to this element index.
-    onDragOver(index){
+    onDragOver(index, draggedAfter){
         Drag.draggedOverElementIndex = index;
+        Drag.draggedAfter = draggedAfter;
         //console.log("Dragged over index: " + index);
     },
 };
@@ -326,10 +326,6 @@ const EventListeners = {
             });
 
             //Drag listeners
-            elementFilter.querySelector(".drag-icon").addEventListener('click', function(){
-                Drag.onDragOver(index)
-            });
-
             elementFilter.addEventListener('dragstart', () =>{
                 Drag.onDragStart(index);
             })
@@ -338,8 +334,12 @@ const EventListeners = {
                 Drag.onDragEnd();
             })
 
-            elementFilter.addEventListener('dragover', () =>{
-                Drag.onDragOver(index);
+            elementFilter.addEventListener('dragover', (event) =>{
+                if(event.clientY > elementFilter.offsetTop + (elementFilter.offsetHeight / 2)){
+                    Drag.onDragOver(index, true);
+                }else{
+                    Drag.onDragOver(index, false);
+                }
             })
         }); 
     },

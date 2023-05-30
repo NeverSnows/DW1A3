@@ -1,3 +1,4 @@
+/* Global */
 body, html{
     height: 100%;
 }
@@ -27,6 +28,10 @@ body{
     opacity: 0;
 }
 
+:root{
+    --contentWidth: 30%;
+}
+
 .dark-theme{
     --bodyBg: #3c3e42;
     --filterborder: #424242;
@@ -48,11 +53,11 @@ body{
     --codeParentheses: #a13f8c;
     --codeNumber: #78b678;
 }
-
+/* Top */
 
 .content-style{
     transition: all 0.5s;
-    width: 30%;
+    width: var(--contentWidth);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -98,6 +103,8 @@ body{
     border-radius: 0.2rem;
     font-size: 0.8rem;
 }
+
+/* Filters */
 
 .filters-container{
     background-color: var(--filtersContainerBg);
@@ -178,6 +185,8 @@ body{
     transition: all 0.3s;
     background-color: var(--newFilterBtnBgHVR);
 }
+
+/* Output Code */
 
 .output-code-container{
     display: flex;
@@ -298,6 +307,7 @@ footer{
     color: var(--link);
     transition: all 0.2s;
     margin: 1rem;
+    cursor: url('assets/images/newTabIcon.png'), ne-resize;
 }
 
 .link:hover{
@@ -305,21 +315,25 @@ footer{
     transition: all 0.2s;
 }
 
+/* Resizing Content */
+
 @media (max-width: 1300px){
-    .content-style{
-        width:45%;
-        transition: all 0.5s;
+    :root{
+        --contentWidth: 45%;
     }
 }
 
 @media (max-width: 1000px){
-    .content-style{
-        width:60%;
-        transition: all 0.5s;
+    :root{
+        --contentWidth: 60%;
     }
 }
 
 @media (max-width: 700px){
+    :root{
+    --contentWidth: 80%;
+    }
+
     .logo{
         font-size: 2rem;
         transition: all 0.5s;
@@ -330,21 +344,15 @@ footer{
         flex-direction: column;
         align-items: center;
     }
-
-    .content-style{
-        width:80%;
-        transition: all 0.5s;
-    }
-
 }
 
 @media (max-width: 500px){
+    :root{
+        --contentWidth: 90%;
+    }
+
     .logo{
         font-size: 1.5rem;
-        transition: all 0.5s;
-    }
-    .content-style{
-        width:90%;
         transition: all 0.5s;
     }
 }
