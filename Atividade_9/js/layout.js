@@ -53,14 +53,21 @@ const Output = {
         const output = document.createElement("div");
         let codeOutput = '<span class="atribute-color">filter:</span>'
 
-        Filter.imageFiltersList.forEach(function(filter){
-            codeOutput += 
-            '<span class="text-color">&nbsp' + filter.filterName + '</span>' +
-            '<span class="parentheses-color">(</span>' + 
-            '<span class="number-color">' + filter.value + '</span>' +
-            '<span class="parentheses-color">)</span>';
-            
-        })
+        let test = [];
+
+        if(Filter.imageFiltersList.length != 0){
+            Filter.imageFiltersList.forEach(function(filter){
+                codeOutput += 
+                '<span class="text-color">&nbsp' + filter.filterName + '</span>' +
+                '<span class="parentheses-color">(</span>' + 
+                '<span class="number-color">' + filter.value + '</span>' +
+                '<span class="parentheses-color">)</span>';
+                
+            });
+        }else{
+            codeOutput += '<span class="text-color">&nbspnone</span>';
+        }
+
         codeOutput += '<span class="text-color">;</span>';
 
         output.innerHTML = codeOutput;
@@ -206,7 +213,7 @@ const DOM = {
     },
 
     displayCopyMessage(){
-        const messageElement = document.querySelector(".copy-message");
+        const messageElement = document.querySelector(".copy-message-container");
 
         messageElement.classList.remove("hidden");
         setTimeout(() => {messageElement.classList.add("hidden");} ,3000)

@@ -24,7 +24,7 @@ body{
 }
 
 .hidden{
-    transition: all 1s;
+    transition: all 0.5s;
     opacity: 0;
 }
 
@@ -34,10 +34,10 @@ body{
 
 .dark-theme{
     --bodyBg: #3c3e42;
-    --filterborder: #424242;
+    --filterBorder: #424242;
     --filterBg: #dadada;
     --filtersContainerBg: #dde0e0;
-    --newFilterBtnBorder: var(--filterborder);
+    --newFilterBtnBorder: var(--filterBorder);
     --newFilterBtnBg: var(--filterBg);
     --newFilterBtnBgHVR: #bbc1c4;
     --targetImageFormTxt: #d4d4d4;
@@ -52,6 +52,28 @@ body{
     --codeText: #d4d4d4;
     --codeParentheses: #a13f8c;
     --codeNumber: #78b678;
+}
+
+.light-theme{
+    --bodyBg: #c3c8d3;
+    --filterBorder: #424242;
+    --filterBg: #d0d4e0;
+    --filtersContainerBg: #b5b9cc;
+    --newFilterBtnBorder: var(--filterBorder);
+    --newFilterBtnBg: var(--filterBg);
+    --newFilterBtnBgHVR: #bbc1c4;
+    --targetImageFormTxt: #353535;
+    --deleteFilterBtn: #960505;
+    --link: var(--targetImageFormTxt);
+    --linkHVR: #6a7a97;
+    --footerBg: var(--codeBg);
+
+    --codeBg: #9eaabe;
+    --codeTitleBg: #838fa5;
+    --codeAtribute: #be1a1a;
+    --codeText: #161616;
+    --codeParentheses: #338f1c;
+    --codeNumber: #2764aa;
 }
 /* Top */
 
@@ -126,7 +148,7 @@ body{
 .filter{
     margin-top: 0.5rem;
     padding: 1rem;
-    border: solid 2px var(--filterborder);
+    border: solid 2px var(--filterBorder);
     border-radius: 0.5rem;
     background-color: var(--filterBg);
     width: 80%;
@@ -219,18 +241,30 @@ body{
     align-items: center;
 }
 
+.copy-message-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    transition: all 0.5s;
+}
+
 .copy-message{
     background-color: var(--filtersContainerBg);
     height: 1.2rem;
     font-size: 0.9rem;
     font-family: Consolas, Menlo, "courier new", monospace;
     padding: 0.2rem;
-    border-radius: 0.3rem 0.3rem 0 0.3rem;
-    transition: all 1s;
+    border-radius: 0.3rem;
 
     display: flex;
     flex-direction: row;
     align-items: end;
+}
+
+.copy-message-arrow{
+    border-style: solid;
+    border-width: 5px;
+    border-color: transparent transparent transparent var(--filtersContainerBg);
 }
 
 .copy-btn{
@@ -243,7 +277,6 @@ body{
 .copy-btn:hover{
     transition: all 0.2s;
     filter: invert() brightness(30%);
-
 }
 
 .output-code{
@@ -292,6 +325,7 @@ body{
 
 /* Footer */
 
+
 footer{
     display: flex;
     flex-direction: row;
@@ -307,7 +341,7 @@ footer{
     color: var(--link);
     transition: all 0.2s;
     margin: 1rem;
-    cursor: url('assets/images/newTabIcon.png'), ne-resize;
+    cursor: url(/Atividade_9/assets/images/test.svg) 12 12, ne-resize;
 }
 
 .link:hover{
