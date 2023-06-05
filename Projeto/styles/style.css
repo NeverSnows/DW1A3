@@ -1,0 +1,161 @@
+/* Global */
+.light-theme{
+    --bodyBg: #3a3836;
+    --headerBg: #242323;
+
+    --calculatorBorder:#1f1e1d;
+    --calculatorBg: #3f3f46;
+
+    --displayBg: #2e3f35;
+    --displayFont: #afafaf;
+    --displayDarkFont: #222e27;
+
+    --numpadBg: #62626b;
+    
+    --digitBg: #9797a5;
+    --digitBgHVR: #83838f;
+    --operatorDigitBg: #2a2a2e;
+    --operatorDigitBgHVR: #202020;
+
+    --footerBg: #2e2e2e;
+    --creditFont: #918883;
+    --creditFontHVR: #534e4b;
+
+}
+
+html, body{
+    height: 100%;
+}
+
+body{
+    background-color: var(--bodyBg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0px;
+}
+
+/* Header */
+header{
+    width: 100%;
+    height: 5rem;
+    background-color: var(--headerBg);
+}
+
+
+/* Calculator */
+.calculator-body{
+    width: 450px;
+    height: 550px;
+    background-color: var(--calculatorBg);
+    border-radius: 5%;
+    border: 7px solid var(--calculatorBorder);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Display */
+.display{
+    width: 95%;
+    height: 15%;
+    background-color: var(--displayBg);
+    margin-top: 10%;
+    border: 3px solid var(--calculatorBorder);
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    box-sizing: border-box;
+}
+
+.display-font{
+    color: var(--displayFont);
+    font-size: 4.3rem;
+    font-family: 'Seven Segment', sans-serif;
+    margin-top: -4.5rem;
+    background-color: var(--displayBg);
+}
+
+.dark-display-font{
+    color: var(--displayDarkFont);
+    margin-top: 0px;
+}
+
+/* Numpad */
+.numpad{
+    background-color: var(--numpadBg);
+    width: 95%;
+    height: 65%;
+    border: 3px solid var(--calculatorBorder);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    box-sizing: border-box;
+    margin-top: 1rem;
+}
+
+.digit{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 0;
+    background-color: var(--digitBg);
+    border: 3px solid var(--calculatorBorder);
+    border-radius: 0.8rem;
+    justify-content: center;
+    font-size: 40px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    cursor: pointer;
+}
+
+.digit:hover{
+    background-color: var(--digitBgHVR);
+    transition: 0.2s all;
+}
+
+.operator-digit{
+    color: var(--displayFont);
+    background-color: var(--operatorDigitBg);
+    border: 3px solid var(--calculatorBorder);
+}
+
+.operator-digit:hover{
+    background-color: var(--operatorDigitBgHVR);
+}
+
+.equals-digit{
+    grid-column: 3 / 5;
+}
+
+.backspace-img{
+    width: 40px;
+    height: 40px;
+}
+
+/* Footer */
+
+footer{
+    width: 100%;
+    height: 3rem;
+    background-color: var(--footerBg);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 3%;
+    box-sizing: border-box;
+}
+
+.credit{
+    font-size: 18px;
+    font-family: 'Courier New', Courier, monospace;
+    color: var(--creditFont);
+    text-decoration: none;
+}
+
+.credit:hover{
+    color: var(--creditFontHVR);
+    transition: 0.3s all;
+}
