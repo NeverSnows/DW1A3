@@ -1,23 +1,14 @@
-let firstNumber = '';
-let secondNumber = '';
-let operator = 'none';
-let result;
-
-let currentOperand = 1;
-let lastPress = 'initialState';
-
-const displayElement = document.getElementById('display');
-
+//Don't ask how these methods work. 
 function AppendNumber(num){
     if(currentOperand == 1){
         if(firstNumber == ''){
             displayElement.textContent = '';
         }
         firstNumber += num;
-        console.log('First: ' + firstNumber);
+        //console.log('First: ' + firstNumber);
     }else{
         secondNumber += num;
-        console.log('Second: ' + secondNumber);
+        //console.log('Second: ' + secondNumber);
     }
     lastPress = 'number';
     displayElement.append(num);
@@ -36,7 +27,7 @@ function OperatorHandler(op){
     currentOperand = 2;
     operator = op;
     displayElement.append(operator);
-    console.log('Operator: ' + operator);
+    //console.log('Operator: ' + operator);
     lastPress = 'operator';
 }
 
@@ -59,9 +50,10 @@ function GetResult(){
         case '-': result = Diff(firstNumber, secondNumber); break;
         case '+': result = Add(firstNumber, secondNumber); break;
         case '%': result = Mod(firstNumber, secondNumber); break;
+        case 'none': break;
         default: console.error("Invalid operator");
     }
-    console.log('Result: ' + result);
+    //console.log('Result: ' + result);
 }
 
 function Equals(){
@@ -97,15 +89,17 @@ function Backspace(){
     result = '';
     lastPress = 'backspace';
 
-    console.log('N1: ' + firstNumber);
-    console.log('Operator: ' + operator);
-    console.log('N2: ' + secondNumber);
+    //console.log('backspace');
+    //console.log('N1: ' + firstNumber);
+    //console.log('Operator: ' + operator);
+    //console.log('N2: ' + secondNumber);
 }
 
 function DeleteEndOfDisplay(){
     displayElement.textContent = displayElement.textContent.substring(0, displayElement.textContent.length - 1);
 }
 
+//Resets calculator to initial state.
 function Clear(){
     firstNumber = '';
     secondNumber = '';
@@ -115,6 +109,7 @@ function Clear(){
     lastPress = 'clear';
 }
 
+//These methods handle aritmetics and should filter out any invalid input.
 function Add(num1, num2){
     return num1 + num2;
 }
@@ -135,8 +130,31 @@ function Mod(num1, num2){
     return num1 % num2;
 }
 
+//Checks keyboard inputs and calls functions accordingly.
+function checkKeyPressed(event) {
+    const key = event.key;
+
+    if(!Number.isNaN(Number(key))){
+        AppendNumber(key);
+    } else{
+        switch(key){
+            case '+': OperatorHandler('+'); break;
+            case '-': OperatorHandler('-'); break;
+            case '*': OperatorHandler('*'); break;
+            case '/': OperatorHandler('/'); break;
+            case '%': OperatorHandler('%'); break;
+            case '.': AppendNumber('.'); break;
+            case ',': AppendNumber('.'); break;
+            case '=': Equals(); break;
+            case 'Enter': Equals(); break;
+            case 'Backspace': Backspace(); break;
+            case 'Delete': Clear(); break;
+        }
+    }
+}
 
 const EventListener = {
+    //Should be called once at the start in order to avoid event listener duplicity.
     subscribeFixedEventListeners(){
         document.getElementById('zero-digit').addEventListener('click', ()=>{AppendNumber('0')});
         document.getElementById('one-digit').addEventListener('click', ()=>{AppendNumber('1')});
@@ -157,12 +175,25 @@ const EventListener = {
         document.getElementById('dif-digit').addEventListener('click', ()=>{OperatorHandler('-')});
         document.getElementById('sum-digit').addEventListener('click', ()=>{OperatorHandler('+')});
         document.getElementById('equals-digit').addEventListener('click', Equals);
-
+        window.addEventListener("keydown", checkKeyPressed, false);
     },
 
+    //Should be called on every update.
     subscribeDynamicEventListeners(){
 
     },
 };
+
+//Atribuitions and calls should start here.
+
+let firstNumber = '';
+let secondNumber = '';
+let operator = 'none';
+let result;
+
+let currentOperand = 1;
+let lastPress = 'initialState';
+
+const displayElement = document.getElementById('display');
 
 EventListener.subscribeFixedEventListeners();
