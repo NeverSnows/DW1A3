@@ -1,8 +1,4 @@
 
-/*
-https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#unique_file_type_specifiers
-*/
-
 //General utilities.
 const Utils = {
     //Defines acceptable file formats.
@@ -327,30 +323,26 @@ const EventListeners = {
 
             const index = elementFilter.dataset.index;
 
-            elementFilter.querySelector("select").addEventListener('change', (event)=>{
+            elementFilter.querySelector("select").addEventListener('change', (event) => {
                 Filter.updateFiltersListName(event.target.value, index);
                 Filter.updateFiltersListValue('', index);
                 DOM.updateInputPlaceholder(index);
                 DOM.updateFiltersOntarget();
             });
 
-            elementFilter.querySelector("input").addEventListener('change', (event)=>{
+            elementFilter.querySelector("input").addEventListener('change', (event) => {
                 Filter.updateFiltersListValue(event.target.value, index);
                 DOM.updateFiltersOntarget();
             });
 
-            elementFilter.querySelector(".delete-button").addEventListener('click', ()=>{
-                Filter.removeFilter(index);
-            });
+            elementFilter.querySelector(".delete-button").addEventListener('click', () => Filter.removeFilter(index));
 
             //Drag listeners
-            elementFilter.addEventListener('dragstart', ()=>{
-                Drag.onDragStart(index);
-            });
+            elementFilter.addEventListener('dragstart', () => Drag.onDragStart(index));
 
             elementFilter.addEventListener('dragend', Drag.onDragEnd);
 
-            elementFilter.addEventListener('dragover', (event) =>{
+            elementFilter.addEventListener('dragover', (event) => {
                 if(event.clientY > elementFilter.offsetTop + (elementFilter.offsetHeight / 2)){
                     Drag.onDragOver(index, true);
                 }else{
@@ -367,9 +359,7 @@ const App = {
     //then does GUI maintenance.
     init(){
         if(Filter.imageFiltersList.length > 0){
-            Filter.imageFiltersList.forEach(function(filter, index){
-                DOM.createFilter(filter, index);
-            })
+            Filter.imageFiltersList.forEach((filter, index) => DOM.createFilter(filter, index));
         }
         Output.updateOutputDisplay();
         EventListeners.subscribeDynamicEventListeners();
