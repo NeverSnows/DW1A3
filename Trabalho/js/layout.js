@@ -90,7 +90,9 @@ const DOM = {
             <img src="assets/images/confirm.svg" alt="Confirm delete transaction" class="confirm_delete_transaction">
             <img src="assets/images/deny.svg" alt="Deny delete transaction" class="deny_delete_transaction">
         </div>
-        <img src="assets/images/delete_transaction.svg" alt="Deletar transacao" class="delete_transaction_icon" id="delete_transaction"> 
+        <div class=="delete_transaction_icon_container">
+            <img src="assets/images/delete_transaction.svg" alt="Deletar transacao" class="delete_transaction_icon" id="delete_transaction"> 
+        </div>
     </td>  
     `;
         return html;
