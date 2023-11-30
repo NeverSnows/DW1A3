@@ -270,7 +270,7 @@ body{
 
 }
 
-.delete_transaction_icon:hover{
+.delete_transaction_icon_container:hover > .delete_transaction_icon{
     transition: all 0.1s;
     filter: grayscale(1);
     border: 2px var(--expense) solid;
